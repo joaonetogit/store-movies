@@ -1,15 +1,10 @@
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
+import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICardProductProps } from '@/types/components/CardProduct';
-import convertCoin from '@/utils/convertCoin';
-import { toast } from 'sonner';
 
 export default function CardProduct({ product }: ICardProductProps) {
-  function handleAddToCart() {
-    toast(`${product.title} added to cart`);
-  }
-
-  const valueProductFormatted = convertCoin(product.price);
+  const { addToCartLoading, onAddToCart, priceFormatted } = useCardProduct(product);
 
   return (
     <Card>
@@ -23,12 +18,16 @@ export default function CardProduct({ product }: ICardProductProps) {
         <h2 className="text-2xl mt-2">{product.title}</h2>
         <div className="flex items-center gap-2">
           <p>Price:</p>
-          <p>{valueProductFormatted}</p>
+          <p>{priceFormatted}</p>
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-center">
-        <Button className="bg-blue-500 hover:bg-blue-700" onClick={handleAddToCart}>
-          Add to Cart
+        <Button
+          disabled={addToCartLoading}
+          className="bg-blue-500 hover:bg-blue-700"
+          onClick={onAddToCart}
+        >
+          {addToCartLoading ? 'Adding to cart...' : 'Add to Cart'}
         </Button>
       </CardFooter>
     </Card>
