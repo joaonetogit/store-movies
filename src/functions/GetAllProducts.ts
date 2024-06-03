@@ -1,14 +1,15 @@
-import api from '@/api/api';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 export async function FecthAllProducts() {
-  const URL = import.meta.env.VITE_API_BASE_URL;
-  return api.get(URL);
+  const URL = 'https://api-movie-store.vercel.app/api/products';
+  console.log('URL', URL);
+  return axios.get(URL);
 }
 
 export default function GetAllProducts() {
   const { data, error, isLoading, refetch, isRefetching } = useQuery({
-    queryKey: ['products'],
+    queryKey: ['films'],
     queryFn: FecthAllProducts,
   });
 
