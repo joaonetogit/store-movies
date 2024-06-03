@@ -1,6 +1,15 @@
-import { FecthAllProducts } from '@/functions/GetAllProducts';
+import { FecthAllProducts } from '@/functions/FetchAllProducts';
+import { useQuery } from '@tanstack/react-query';
 
 export default function useHome() {
-  const films = FecthAllProducts();
-  return { films };
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['products'],
+    queryFn: FecthAllProducts,
+  });
+
+  return { products, error, isLoading };
 }
