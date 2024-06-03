@@ -1,26 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { IProduct } from '@/types/product';
 import axios from 'axios';
 
-export async function FecthAllProducts() {
-  const URL = 'https://api-movie-store.vercel.app/api/products';
-  console.log('URL', URL);
-  return axios.get(URL);
-}
+const URL = import.meta.env.VITE_URL_API;
 
-export default function GetAllProducts() {
-  const { data, error, isLoading, refetch, isRefetching } = useQuery({
-    queryKey: ['films'],
-    queryFn: FecthAllProducts,
-  });
-
-  const films = data?.data;
-  const loadingFilms = isLoading;
-
-  return {
-    films,
-    loadingFilms,
-    error,
-    refetch,
-    isRefetching,
-  };
+export async function FecthAllProducts(): Promise<IProduct[]> {
+  try {
+    const response = await axios.get(URL);
+    const products: IProduct[] = response.data.products;
+    return products;
+  } catch (error) {
+    console.error('Ocorreu um erro ao buscar os produtos:', error);
+    return [];
+  }
 }

@@ -1,13 +1,15 @@
 import { IProvidersProps } from '@/types/context/Providers';
-import QueryProvider from './QueryProvider';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryProvider } from './QueryProvider';
 import { ThemeProvider } from './ThemeProvider';
 
 export default function Providers({ children }: IProvidersProps) {
   return (
-    <QueryProvider>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <QueryProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
         {children}
-      </ThemeProvider>
-    </QueryProvider>
+      </QueryProvider>
+    </ThemeProvider>
   );
 }

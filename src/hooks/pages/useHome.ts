@@ -1,6 +1,6 @@
-import GetAllProducts from '@/functions/GetAllProducts';
+import { FecthAllProducts } from '@/functions/GetAllProducts';
 
 export default function useHome() {
-  const { films } = GetAllProducts();
+  const films = FecthAllProducts();
   return { films };
 }
