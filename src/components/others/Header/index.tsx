@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Container from '../Container';
 import HeaderCart from './HeaderCart';
 
@@ -9,9 +10,9 @@ export default function Header() {
     >
       <Container>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <Link className="flex items-center gap-4" to="/">
             <img className="max-w-40" src="/logo-company.png" alt="Logo Company" />
-          </div>
+          </Link>
           <div className="flex items-center gap-4">
             <HeaderCart />
           </div>
