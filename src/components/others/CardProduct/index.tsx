@@ -9,13 +9,15 @@ export default function CardProduct({ product }: ICardProductProps) {
   return (
     <Card>
       <CardContent className="pt-6 pb-4 flex flex-col items-center justify-center">
-        <img
-          className="block w-full h-full max-h-48 object-contain"
-          src={product.image}
-          alt={`Image - ${product.title}`}
-        />
+        <div className="rounded-md overflow-hidden">
+          <img
+            className="block w-full h-full max-h-48 object-contain"
+            src={product.image}
+            alt={`Image - ${product.title}`}
+          />
+        </div>
 
-        <h2 className="text-2xl mt-2">{product.title}</h2>
+        <h2 className="text-2xl mt-4 mb-2">{product.title}</h2>
         <div className="flex items-center gap-2">
           <p>Price:</p>
           <p>{priceFormatted}</p>
