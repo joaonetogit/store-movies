@@ -11,7 +11,7 @@ export default function Header() {
       <Container>
         <div className="flex items-center justify-between">
           <Link className="flex items-center gap-4" to="/">
-            <img className="max-w-40" src="/logo-company.png" alt="Logo Company" />
+            <h1 className="text-4xl font-bold">Movie Store</h1>
           </Link>
           <div className="flex items-center gap-4">
             <HeaderCart />
