@@ -26,7 +26,7 @@ export default function CardProduct({ product }: ICardProductProps) {
       <CardFooter className="flex items-center justify-center">
         <Button
           disabled={addToCartLoading}
-          className="bg-blue-500 hover:bg-blue-700"
+          className="bg-blue-500 hover:bg-blue-700 dark:text-white"
           onClick={onAddToCart}
         >
           {addToCartLoading ? 'Adding to cart...' : 'Add to Cart'}
