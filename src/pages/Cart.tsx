@@ -1,6 +1,7 @@
+import ActionsCartPage from '@/components/others/CartPage/ActionsCartPage';
 import CartEmpty from '@/components/others/CartPage/CartEmpty';
 import CartList from '@/components/others/CartPage/CartList';
-import ActionCartButton from '@/components/others/CartPage/CheckoutButton';
+import ClearCartButton from '@/components/others/CartPage/CleanCartButton';
 import Container from '@/components/others/Container';
 import LayoutApp from '@/layouts/LayoutApp';
 import useCartStore from '@/store/useCartStore';
@@ -11,15 +12,14 @@ export default function Cart() {
   return (
     <LayoutApp>
       <Container>
-        <h1>Cart</h1>
-
         {cartItems.length > 0 && (
           <>
-            <CartList />
-            <div className="flex items-center gap-2 mt-4">
-              <ActionCartButton label="Continue shopping" to="/" />
-              <ActionCartButton label="Checkout" to="/buy" />
+            <div className="flex items-center justify-between">
+              <h1 className="text-2xl mb-12">Cart</h1>
+              <ClearCartButton />
             </div>
+            <CartList />
+            <ActionsCartPage />
           </>
         )}
 

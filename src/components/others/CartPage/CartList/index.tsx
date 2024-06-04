@@ -5,7 +5,7 @@ export default function CartList() {
   const { cartItems } = useCartStore();
 
   return (
-    <div className='grid grid-cols-4 gap-4'>
+    <div className="grid grid-cols-4 gap-4">
       {cartItems.map((item) => (
         <CartCardProduct key={item.id} product={item} />
       ))}

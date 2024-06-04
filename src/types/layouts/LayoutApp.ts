@@ -1,3 +1,5 @@
 import { IChildrenProps } from '../base';
 
-export interface ILayoutAppProps extends IChildrenProps {}
+export interface ILayoutAppProps extends IChildrenProps {
+  headerHasOnlyLogo?: boolean;
+}

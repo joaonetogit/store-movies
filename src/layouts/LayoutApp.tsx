@@ -4,11 +4,11 @@ import { ModeToggle } from '@/components/others/ModeToggle';
 import { Toaster } from '@/components/ui/Sonner';
 import { ILayoutAppProps } from '@/types/layouts/LayoutApp';
 
-export default function LayoutApp({ children }: ILayoutAppProps) {
+export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppProps) {
   return (
     <>
-      <Header />
-      <main>{children}</main>
+      <Header onlyHeaderLogo={headerHasOnlyLogo} />
+      <main className="h-dvh mt-[15vh]">{children}</main>
       <Footer />
       <Toaster />
       <ModeToggle />

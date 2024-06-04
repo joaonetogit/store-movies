@@ -5,7 +5,7 @@ import sleep from '@/utils/sleep';
 import { useState } from 'react';
 
 export default function useCardProduct(product: IProduct) {
-  const { addItemToCart } = useCartStore();
+  const { addItemToCart, findQtyById } = useCartStore();
   const [addToCartLoading, setAddToCartLoading] = useState(false);
 
   async function onAddToCart() {
@@ -17,5 +17,7 @@ export default function useCardProduct(product: IProduct) {
 
   const priceFormatted = convertCoin(product.price);
 
-  return { onAddToCart, priceFormatted, addToCartLoading };
+  const hasProductInCart = Number(findQtyById(product.id)) > 0;
+
+  return { onAddToCart, priceFormatted, addToCartLoading, hasProductInCart };
 }

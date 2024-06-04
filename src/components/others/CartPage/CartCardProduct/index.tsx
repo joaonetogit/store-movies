@@ -11,7 +11,6 @@ export default function CartCardProduct({ product }: ICartCardProductProps) {
     onIncreaseQuantity,
     onDecreaseQuantity,
     priceFormatted,
-    onProductActionLoading,
     quantityThisProduct,
   } = useCartCardProduct(product);
 
@@ -27,29 +26,23 @@ export default function CartCardProduct({ product }: ICartCardProductProps) {
         </div>
 
         <h2 className="text-2xl mt-4 mb-2">{product.title}</h2>
-        <div className="flex items-center gap-2">
-          <p>Price:</p>
-          <p>{priceFormatted}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <p>Quantity:</p>
-          <p>{quantityThisProduct}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button
-            variant={'outline'}
-            disabled={onProductActionLoading}
-            onClick={onIncreaseQuantity}
-          >
-            <Plus size={16} />
-          </Button>
-          <Button
-            variant={'outline'}
-            disabled={onProductActionLoading}
-            onClick={onDecreaseQuantity}
-          >
-            <Minus size={16} />
-          </Button>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex items-center gap-2">
+            <p>Price:</p>
+            <p>{priceFormatted}</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <p>Quantity:</p>
+            <p>{quantityThisProduct}</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button variant={'outline'} onClick={onIncreaseQuantity}>
+              <Plus size={16} />
+            </Button>
+            <Button variant={'outline'} onClick={onDecreaseQuantity}>
+              <Minus size={16} />
+            </Button>
+          </div>
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-center gap-4">

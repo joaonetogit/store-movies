@@ -4,7 +4,8 @@ import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICardProductProps } from '@/types/components/CardProduct';
 
 export default function CardProduct({ product }: ICardProductProps) {
-  const { addToCartLoading, onAddToCart, priceFormatted } = useCardProduct(product);
+  const { addToCartLoading, onAddToCart, priceFormatted, hasProductInCart } =
+    useCardProduct(product);
 
   return (
     <Card>
@@ -25,11 +26,17 @@ export default function CardProduct({ product }: ICardProductProps) {
       </CardContent>
       <CardFooter className="flex items-center justify-center">
         <Button
+          variant={!hasProductInCart ? 'default' : 'secondary'}
           disabled={addToCartLoading}
-          className="bg-blue-500 hover:bg-blue-700 dark:text-white"
           onClick={onAddToCart}
         >
-          {addToCartLoading ? 'Adding to cart...' : 'Add to Cart'}
+          {addToCartLoading
+            ? hasProductInCart
+              ? 'Increasing cart quantity...'
+              : 'Adding to cart...'
+            : hasProductInCart
+              ? 'Increase cart quantity'
+              : 'Add to Cart'}
         </Button>
       </CardFooter>
     </Card>
