@@ -5,9 +5,9 @@ export interface IProduct {
   image: string;
 }
 
-export type IProductOnCart = IProduct & {
+export interface IProductOnCart extends IProduct {
   quantity: number;
-};
+}
 
 export interface IProductList {
   products: IProduct[];
