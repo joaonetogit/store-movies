@@ -13,14 +13,14 @@ export default function Cart() {
     <LayoutApp>
       <Container>
         {cartItems.length > 0 && (
-          <div className="-mt-[15vh] -mb-[20vh]">
+          <>
             <CartHeader />
             <CartList />
             <div className="flex justify-center mt-10">
               <p className="text-2xl">Total: {calculateTotal()}</p>
             </div>
             <ActionsCartPage />
-          </div>
+          </>
         )}
 
         {cartItems.length === 0 && <CartEmpty />}
