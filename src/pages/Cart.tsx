@@ -1,29 +1,19 @@
-import ActionsCartPage from '@/components/others/CartPage/ActionsCartPage';
 import CartEmpty from '@/components/others/CartPage/CartEmpty';
-import CartHeader from '@/components/others/CartPage/CartHeader';
-import CartList from '@/components/others/CartPage/CartList';
+import CartHasItems from '@/components/others/CartPage/CartHasItems';
 import Container from '@/components/others/Container';
 import LayoutApp from '@/layouts/LayoutApp';
 import useCartStore from '@/store/useCartStore';
 
 export default function Cart() {
-  const { cartItems, calculateTotal } = useCartStore();
+  const { cartItems } = useCartStore();
+
+  const hasItemsOnCart = cartItems.length > 0;
 
   return (
     <LayoutApp>
       <Container>
-        {cartItems.length > 0 && (
-          <>
-            <CartHeader />
-            <CartList />
-            <div className="flex justify-center mt-10">
-              <p className="text-2xl">Total: {calculateTotal()}</p>
-            </div>
-            <ActionsCartPage />
-          </>
-        )}
-
-        {cartItems.length === 0 && <CartEmpty />}
+        {hasItemsOnCart && <CartHasItems />}
+        {!hasItemsOnCart && <CartEmpty />}
       </Container>
     </LayoutApp>
   );
