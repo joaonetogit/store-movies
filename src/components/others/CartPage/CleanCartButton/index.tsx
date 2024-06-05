@@ -19,7 +19,7 @@ export default function ClearCartButton() {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant={'destructive'}>
-          <p>Empty shopping cart</p>
+          <p>Clean shopping cart</p>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

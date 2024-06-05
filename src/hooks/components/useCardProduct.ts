@@ -5,7 +5,7 @@ import sleep from '@/utils/sleep';
 import { useState } from 'react';
 
 export default function useCardProduct(product: IProduct) {
-  const { addItemToCart, findQtyById } = useCartStore();
+  const { addItemToCart, findQtyById, increaseQuantity, decreaseQuantity } = useCartStore();
   const [addToCartLoading, setAddToCartLoading] = useState(false);
 
   async function onAddToCart() {
@@ -15,9 +15,27 @@ export default function useCardProduct(product: IProduct) {
     setAddToCartLoading(false);
   }
 
+  async function onIncreaseQuantity() {
+    increaseQuantity(product.id);
+  }
+
+  async function onDecreaseQuantity() {
+    decreaseQuantity(product.id);
+  }
+
   const priceFormatted = convertCoin(product.price);
 
-  const hasProductInCart = Number(findQtyById(product.id)) > 0;
+  const quantityProductInCart = Number(findQtyById(product.id));
 
-  return { onAddToCart, priceFormatted, addToCartLoading, hasProductInCart };
+  const hasProductInCart = quantityProductInCart > 0;
+
+  return {
+    onAddToCart,
+    priceFormatted,
+    addToCartLoading,
+    hasProductInCart,
+    quantityProductInCart,
+    onIncreaseQuantity,
+    onDecreaseQuantity,
+  };
 }

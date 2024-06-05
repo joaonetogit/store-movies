@@ -7,7 +7,7 @@ export default function Header({ onlyHeaderLogo = false }: IHeaderProps) {
   return (
     <header
       data-testid="header-test"
-      className="w-full fixed top-0 right-0 py-6 border-0 border-b border-border drop-shadow-lg mb-8 bg-white dark:bg-black"
+      className="w-full fixed top-0 right-0 py-6 border-0 border-b border-border drop-shadow-lg bg-white dark:bg-black"
     >
       <Container>
         <div

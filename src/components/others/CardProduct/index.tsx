@@ -2,13 +2,21 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICardProductProps } from '@/types/components/CardProduct';
+import { Minus, Plus } from 'lucide-react';
 
 export default function CardProduct({ product }: ICardProductProps) {
-  const { addToCartLoading, onAddToCart, priceFormatted, hasProductInCart } =
-    useCardProduct(product);
+  const {
+    addToCartLoading,
+    quantityProductInCart,
+    onAddToCart,
+    priceFormatted,
+    hasProductInCart,
+    onIncreaseQuantity,
+    onDecreaseQuantity,
+  } = useCardProduct(product);
 
   return (
-    <Card>
+    <Card className="flex flex-col items-center justify-between">
       <CardContent className="pt-6 pb-4 flex flex-col items-center justify-center">
         <div className="rounded-md overflow-hidden">
           <img
@@ -24,20 +32,24 @@ export default function CardProduct({ product }: ICardProductProps) {
           <p>{priceFormatted}</p>
         </div>
       </CardContent>
-      <CardFooter className="flex items-center justify-center">
-        <Button
-          variant={!hasProductInCart ? 'default' : 'secondary'}
-          disabled={addToCartLoading}
-          onClick={onAddToCart}
-        >
-          {addToCartLoading
-            ? hasProductInCart
-              ? 'Increasing cart quantity...'
-              : 'Adding to cart...'
-            : hasProductInCart
-              ? 'Increase cart quantity'
-              : 'Add to Cart'}
-        </Button>
+      <CardFooter className="flex items-center justify-center flex-col gap-4">
+        {hasProductInCart ? (
+          <div className="flex flex-col items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4">
+              <Button variant="outline" onClick={onIncreaseQuantity} disabled={addToCartLoading}>
+                <Plus size={16} />
+              </Button>
+              <p>{quantityProductInCart}</p>
+              <Button variant="outline" onClick={onDecreaseQuantity} disabled={addToCartLoading}>
+                <Minus size={16} />
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <Button variant="default" onClick={onAddToCart} disabled={addToCartLoading}>
+            {addToCartLoading ? 'Adding to cart...' : 'Add to Cart'}
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
