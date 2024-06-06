@@ -19,10 +19,10 @@ export default function CardProduct({ product }: ICardProductProps) {
 
   return (
     <Card className="flex flex-col items-center justify-between">
-      <CardContent className="pt-6 pb-4 flex flex-col items-center justify-center">
-        <div className="rounded-md overflow-hidden">
+      <CardContent className="flex flex-col items-center justify-center pb-4 pt-6">
+        <div className="overflow-hidden rounded-md">
           <img
-            className="block w-full h-full max-h-48 object-contain"
+            className="block h-full max-h-48 w-full object-contain"
             src={product.image}
             alt={`Image - ${product.title}`}
           />
@@ -34,10 +34,10 @@ export default function CardProduct({ product }: ICardProductProps) {
           </div>
         )}
 
-        <h2 className="text-2xl mt-4 mb-2">{product.title}</h2>
+        <h2 className="mb-2 mt-4 text-2xl">{product.title}</h2>
         <p>{priceFormatted}</p>
       </CardContent>
-      <CardFooter className="flex items-center justify-center gap-4">
+      <CardFooter className="flex flex-wrap items-center justify-center gap-4">
         <LinkToDetailsProduct id={product.id} />
         {hasProductInCart ? (
           <div className="flex items-center justify-center gap-4">

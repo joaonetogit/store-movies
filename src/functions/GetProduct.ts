@@ -1,19 +1,19 @@
 import api from '@/api/api';
 import { IProduct } from '@/types/product';
 
-export async function FecthAllProducts(): Promise<IProduct[]> {
-  const URLToGetProducts = '/products';
+export async function GetProduct(id: string): Promise<IProduct> {
+  const URLToGetProduct = `/products/${id}`;
 
   try {
     const response = await api({
       method: 'GET',
-      url: URLToGetProducts,
+      url: URLToGetProduct,
     });
 
-    const products: IProduct[] = response.data.products;
-    return products;
+    const product: IProduct = response.data;
+    return product;
   } catch (error) {
     console.error('There was an error when searching for products:', error);
-    return [];
+    return {} as IProduct;
   }
 }

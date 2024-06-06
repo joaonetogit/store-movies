@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 export default function CartEmpty() {
   return (
-    <div className="-mt-[15vh] -mb-[20vh] h-screen flex flex-col items-center justify-center">
-      <h1 className="text-2xl mb-10">Your cart is empty.</h1>
-      <Link to={'/'} className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+    <div className="-mb-[20vh] -mt-[15vh] flex h-screen flex-col items-center justify-center">
+      <h1 className="mb-10 text-2xl">Your cart is empty.</h1>
+      <Link to={'/'} className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700">
         Back to home
       </Link>
     </div>

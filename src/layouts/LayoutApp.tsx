@@ -8,7 +8,7 @@ export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppPro
   return (
     <>
       <Header onlyHeaderLogo={headerHasOnlyLogo} />
-      <main className="mt-[15vh] mb-[5vh]">{children}</main>
+      <main className="mb-[5vh] mt-[15vh]">{children}</main>
       <Footer />
       <Toaster />
       <ModeToggle />

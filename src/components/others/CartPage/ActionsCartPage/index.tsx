@@ -6,11 +6,11 @@ export default function ActionsCartPage() {
   const { handleToCheckout } = useActionCartPage();
 
   return (
-    <div className="flex items-center justify-between gap-2 mt-10">
-      <Link to={'/'} className="hover:underline py-2 px-4 transition-all">
+    <div className="mt-10 flex items-center justify-between gap-2">
+      <Link to={'/'} className="px-4 py-2 transition-all hover:underline">
         Continue shopping
       </Link>
-      <Button onClick={handleToCheckout} className="bg-blue-500 hover:bg-blue-700 text-white">
+      <Button onClick={handleToCheckout} className="bg-blue-500 text-white hover:bg-blue-700">
         Finish Checkout
       </Button>
     </div>

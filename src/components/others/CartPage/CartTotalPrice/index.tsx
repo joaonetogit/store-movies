@@ -4,7 +4,7 @@ export default function CartTotalPrice() {
   const { totalCartWithSymbol, whenShippingIsFree, valueDisplayShippingFree } = useCartTotalPrice();
 
   return (
-    <div className="flex items-center text-center justify-center mt-10 flex-col gap-4">
+    <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center">
       <div>
         <p className="text-2xl">Total: {totalCartWithSymbol}</p>
       </div>
