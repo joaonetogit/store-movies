@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import useCardProduct from '@/hooks/components/useCardProduct';
@@ -26,9 +27,14 @@ export default function CardProduct({ product }: ICardProductProps) {
           />
         </div>
 
+        {product.new && (
+          <div className="mt-2">
+            <Badge variant="secondary">{product.new && 'New'}</Badge>
+          </div>
+        )}
+
         <h2 className="text-2xl mt-4 mb-2">{product.title}</h2>
-        <div className="flex items-center gap-2">
-          <p>Price:</p>
+        <div className="flex items-center justify-center opacity-80">
           <p>{priceFormatted}</p>
         </div>
       </CardContent>

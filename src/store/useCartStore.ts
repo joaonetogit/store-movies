@@ -66,7 +66,7 @@ const useCartStore = create(
 
         return 0;
       },
-      calculateTotal: () => calculateTotal(get().cartItems),
+      calculateTotal: (type) => calculateTotal(type, get().cartItems),
       cleanCart: () => {
         set({ cartItems: [] });
       },

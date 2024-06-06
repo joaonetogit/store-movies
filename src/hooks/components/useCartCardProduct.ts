@@ -17,7 +17,7 @@ export default function useCartCardProduct(product: IProduct) {
     removeItemFromCart(product.id);
   }
 
-  const priceFormatted = convertCoin(product.price);
+  const priceFormatted = convertCoin(product.price, 'hasSymbol');
 
   const quantityThisProduct = Number(findQtyById(product.id));
 

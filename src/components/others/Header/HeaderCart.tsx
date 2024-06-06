@@ -7,7 +7,7 @@ export default function HeaderCart() {
 
   return (
     <div className="w-full flex items-center gap-10">
-      <p className="text-sm">Total: {calculateTotal()}</p>
+      <p className="text-sm">Total: {calculateTotal('formatted')}</p>
       <Link className="relative rounded-full p-3 border border-border " to="/cart">
         <div className="absolute flex items-center justify-center w-4 h-4 -top-1 -right-1 rounded-full bg-blue-400 text-white p-1 text-[10px]">
           {cartItems.length}

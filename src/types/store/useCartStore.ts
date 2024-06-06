@@ -7,6 +7,6 @@ export interface ICartStore {
   increaseQuantity: (productId: number) => void;
   decreaseQuantity: (productId: number) => void;
   findQtyById: (id: number) => void;
-  calculateTotal: () => string;
+  calculateTotal: (type: 'formatted' | 'number') => string | number;
   cleanCart: () => void;
 }
