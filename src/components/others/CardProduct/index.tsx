@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICardProductProps } from '@/types/components/CardProduct';
 import { Minus, Plus } from 'lucide-react';
+import LinkToDetailsProduct from '../LinkToDetails';
 
 export default function CardProduct({ product }: ICardProductProps) {
   const {
@@ -34,22 +35,19 @@ export default function CardProduct({ product }: ICardProductProps) {
         )}
 
         <h2 className="text-2xl mt-4 mb-2">{product.title}</h2>
-        <div className="flex items-center justify-center opacity-80">
-          <p>{priceFormatted}</p>
-        </div>
+        <p>{priceFormatted}</p>
       </CardContent>
-      <CardFooter className="flex items-center justify-center flex-col gap-4">
+      <CardFooter className="flex items-center justify-center gap-4">
+        <LinkToDetailsProduct id={product.id} />
         {hasProductInCart ? (
-          <div className="flex flex-col items-center justify-center gap-4">
-            <div className="flex items-center justify-center gap-4">
-              <Button variant="outline" onClick={onIncreaseQuantity} disabled={addToCartLoading}>
-                <Plus size={16} />
-              </Button>
-              <p>{quantityProductInCart}</p>
-              <Button variant="outline" onClick={onDecreaseQuantity} disabled={addToCartLoading}>
-                <Minus size={16} />
-              </Button>
-            </div>
+          <div className="flex items-center justify-center gap-4">
+            <Button variant="outline" onClick={onIncreaseQuantity}>
+              <Plus size={16} />
+            </Button>
+            <p>{quantityProductInCart}</p>
+            <Button variant="outline" onClick={onDecreaseQuantity}>
+              <Minus size={16} />
+            </Button>
           </div>
         ) : (
           <Button variant="default" onClick={onAddToCart} disabled={addToCartLoading}>

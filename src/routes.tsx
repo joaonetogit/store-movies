@@ -3,6 +3,7 @@ import BuySuccess from './pages/BuySuccess.tsx';
 import Cart from './pages/Cart.tsx';
 import Home from './pages/Home.tsx';
 import NotFound from './pages/NotFound.tsx';
+import ProductID from './pages/ProductID.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
   {
     path: '/buy',
     element: <BuySuccess />,
+  },
+  {
+    path: '/product/:id',
+    element: <ProductID />,
   },
   {
     path: '*',

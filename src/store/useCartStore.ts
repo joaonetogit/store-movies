@@ -9,8 +9,8 @@ const useCartStore = create(
   persist<ICartStore>(
     (set, get) => ({
       cartItems: [],
-      addItemToCart: (item: IProduct) => {
-        const itemExists = get().cartItems.find((cartItem) => cartItem.id === item.id);
+      addItemToCart: (product: IProduct) => {
+        const itemExists = get().cartItems.find((cartItem) => cartItem.id === product.id);
 
         if (itemExists) {
           itemExists.quantity++;
@@ -18,7 +18,7 @@ const useCartStore = create(
           set({ cartItems: [...get().cartItems] });
           toast.success(`Increased quantity in the cart`);
         } else {
-          set({ cartItems: [...get().cartItems, { ...item, quantity: 1 }] });
+          set({ cartItems: [...get().cartItems, { ...product, quantity: 1 }] });
           toast.success(`Product added on cart`);
         }
       },
@@ -57,8 +57,8 @@ const useCartStore = create(
           }
         }
       },
-      findQtyById: (id) => {
-        const itemExists = get().cartItems.find((cartItem) => cartItem.id === id);
+      findQtyById: (productId) => {
+        const itemExists = get().cartItems.find((cartItem) => cartItem.id === productId);
 
         if (itemExists) {
           return itemExists.quantity;

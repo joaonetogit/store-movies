@@ -23,7 +23,7 @@ export default function useCardProduct(product: IProduct) {
     decreaseQuantity(product.id);
   }
 
-  const priceFormatted = convertCoin(product.price);
+  const priceFormatted = convertCoin(product.price, 'hasSymbol');
 
   const quantityProductInCart = Number(findQtyById(product.id));
 
