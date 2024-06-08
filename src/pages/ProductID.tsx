@@ -2,8 +2,8 @@ import Container from '@/components/others/Container';
 import { Button } from '@/components/ui/Button';
 import useProductID from '@/hooks/pages/useProductID';
 import LayoutApp from '@/layouts/LayoutApp';
-import { Clock9, Minus, Plus } from 'lucide-react';
-import { useParams } from 'react-router-dom';
+import { ChevronLeft, Clock9, Minus, Plus } from 'lucide-react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function ProductID() {
   const { id } = useParams();
@@ -18,20 +18,30 @@ export default function ProductID() {
     hasProductInCart,
     quantityProductInCart,
     timeFilm,
+    error,
   } = useProductID(idProduct);
+  const navigate = useNavigate();
+
+  if (error || !productSearched) {
+    navigate('/');
+  }
 
   return (
     <LayoutApp>
       <Container>
+        <Link to={'/'} className="mb-4 flex items-center gap-2 py-2 transition-all hover:underline">
+          <ChevronLeft /> Back to home
+        </Link>
+
         <h1 className="mb-20 text-2xl">Product details</h1>
 
         {productSearched && (
-          <div className="flex justify-between gap-20">
+          <div className="mb-40 flex justify-between gap-20">
             <div className="w-full max-w-96 overflow-hidden rounded-2xl">
               <img src={productSearched.image} alt={productSearched.title} />
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full max-w-2xl flex-col gap-4">
               <h2 className="text-4xl">{productSearched.title}</h2>
               <p>{productSearched.description}</p>
               <div>

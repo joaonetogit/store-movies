@@ -1,37 +1,14 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/AlertDialog';
-import { Button } from '@/components/ui/Button';
 import useCartStore from '@/store/useCartStore';
+import AlertConfirmAction from '../../AlertConfirmAction';
 
 export default function ClearCartButton() {
   const { cleanCart } = useCartStore();
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant={'destructive'}>
-          <p>Clean shopping cart</p>
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>Shopping cart cleaning cannot be undone.</AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={cleanCart}>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <AlertConfirmAction
+      onClick={cleanCart}
+      labelButtonAction={'Clean shopping cart'}
+      description={'Shopping cart cleaning cannot be undone.'}
+    />
   );
 }

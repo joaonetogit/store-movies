@@ -1,7 +1,8 @@
 import useCartTotalPrice from '@/hooks/components/useCartTotalPrice';
 
 export default function CartTotalPrice() {
-  const { totalCartWithSymbol, whenShippingIsFree, valueDisplayShippingFree } = useCartTotalPrice();
+  const { totalCartWithSymbol, whenShippingIsFree, valueDisplayShippingFree, valueOfShipping } =
+    useCartTotalPrice();
 
   return (
     <div className="mt-10 flex flex-col items-center justify-center gap-4 text-center">
@@ -11,7 +12,10 @@ export default function CartTotalPrice() {
       {whenShippingIsFree ? (
         <p>Congratulations, your purchase is free!</p>
       ) : (
-        <p>Value for free shipping is {valueDisplayShippingFree}</p>
+        <>
+          <p>Value shipping: {valueOfShipping}</p>
+          <p>The value of the cart for free shipping is {valueDisplayShippingFree}</p>
+        </>
       )}
     </div>
   );

@@ -1,18 +1,19 @@
 import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICardProductProps } from '@/types/components/CardProduct';
-import { Minus, Plus } from 'lucide-react';
+import CardAddCart from '../CardAddCart';
+import CardControlQtd from '../CardControlQtd';
+import ImageForCard from '../ImageForCard';
 import LinkToDetailsProduct from '../LinkToDetails';
 
 export default function CardProduct({ product }: ICardProductProps) {
   const {
     addToCartLoading,
-    quantityProductInCart,
     onAddToCart,
     priceFormatted,
     hasProductInCart,
+    quantityProductInCart,
     onIncreaseQuantity,
     onDecreaseQuantity,
   } = useCardProduct(product);
@@ -20,13 +21,7 @@ export default function CardProduct({ product }: ICardProductProps) {
   return (
     <Card className="flex flex-col items-center justify-between">
       <CardContent className="flex flex-col items-center justify-center pb-4 pt-6">
-        <div className="overflow-hidden rounded-md">
-          <img
-            className="block h-full max-h-48 w-full object-contain"
-            src={product.image}
-            alt={`Image - ${product.title}`}
-          />
-        </div>
+        <ImageForCard image={product.image} title={product.title} />
 
         {product.new && (
           <div className="mt-2">
@@ -40,19 +35,13 @@ export default function CardProduct({ product }: ICardProductProps) {
       <CardFooter className="flex flex-wrap items-center justify-center gap-4">
         <LinkToDetailsProduct id={product.id} />
         {hasProductInCart ? (
-          <div className="flex items-center justify-center gap-4">
-            <Button variant="outline" onClick={onIncreaseQuantity}>
-              <Plus size={16} />
-            </Button>
-            <p>{quantityProductInCart}</p>
-            <Button variant="outline" onClick={onDecreaseQuantity}>
-              <Minus size={16} />
-            </Button>
-          </div>
+          <CardControlQtd
+            quantityProductInCart={quantityProductInCart}
+            onIncreaseQuantity={onIncreaseQuantity}
+            onDecreaseQuantity={onDecreaseQuantity}
+          />
         ) : (
-          <Button variant="default" onClick={onAddToCart} disabled={addToCartLoading}>
-            {addToCartLoading ? 'Adding to cart...' : 'Add to Cart'}
-          </Button>
+          <CardAddCart addToCartLoading={addToCartLoading} onAddToCart={onAddToCart} />
         )}
       </CardFooter>
     </Card>

@@ -20,18 +20,24 @@ export default function useProductID(idForSearchProduct: string) {
   const [addToCartLoading, setAddToCartLoading] = useState<boolean>(false);
 
   async function onAddToCart() {
+    if (!productSearched) return;
+
     setAddToCartLoading(true);
     await sleep(300);
-    productSearched && addItemToCart(productSearched);
+    addItemToCart(productSearched);
     setAddToCartLoading(false);
   }
 
   async function onIncreaseQuantity() {
-    productSearched && increaseQuantity(productSearched.id);
+    if (!productSearched) return;
+
+    increaseQuantity(productSearched.id);
   }
 
   async function onDecreaseQuantity() {
-    productSearched && decreaseQuantity(productSearched.id);
+    if (!productSearched) return;
+
+    decreaseQuantity(productSearched.id);
   }
 
   const priceProduct = productSearched && convertCoin(productSearched?.price, 'hasSymbol');

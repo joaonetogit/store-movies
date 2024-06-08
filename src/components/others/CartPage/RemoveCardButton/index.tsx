@@ -1,36 +1,12 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/AlertDialog';
-import { Button } from '@/components/ui/Button';
+import { IRemoveCardButtonProps } from '@/types/components/RemoveCardButton';
+import AlertConfirmAction from '../../AlertConfirmAction';
 
-export default function RemoveCardButton({ onRemoveToCart }: { onRemoveToCart: () => void }) {
+export default function RemoveCardButton({ onRemoveToCart }: IRemoveCardButtonProps) {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant={'destructive'}>
-          <p>Remove to Cart</p>
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            The deletion of this item from your shopping cart cannot be undone.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onRemoveToCart}>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <AlertConfirmAction
+      onClick={onRemoveToCart}
+      labelButtonAction={'Remove to Cart'}
+      description={'The deletion of this item from your shopping cart cannot be undone.'}
+    />
   );
 }
