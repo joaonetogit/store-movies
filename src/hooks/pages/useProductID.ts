@@ -1,64 +1,30 @@
 import { GetProduct } from '@/functions/GetProduct';
-import useCartStore from '@/store/useCartStore';
 import { getTimeFilm } from '@/utils/calculateTimeFilm';
 import convertCoin from '@/utils/convertCoin';
-import sleep from '@/utils/sleep';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-export default function useProductID(idForSearchProduct: string) {
-  const {
-    data: productSearched,
-    error,
-    isLoading,
-  } = useQuery({
-    queryKey: ['product', idForSearchProduct],
-    queryFn: () => GetProduct(idForSearchProduct),
+export default function useProductID() {
+  const { title } = useParams();
+  const titleProduct = title as string;
+
+  const { data: productSearched, isLoading } = useQuery({
+    queryKey: ['product', titleProduct],
+    queryFn: () => GetProduct(titleProduct),
   });
 
-  const { addItemToCart, findQtyById, increaseQuantity, decreaseQuantity } = useCartStore();
-  const [addToCartLoading, setAddToCartLoading] = useState<boolean>(false);
+  let priceProduct;
+  let timeFilm;
 
-  async function onAddToCart() {
-    if (!productSearched) return;
-
-    setAddToCartLoading(true);
-    await sleep(300);
-    addItemToCart(productSearched);
-    setAddToCartLoading(false);
+  if (productSearched) {
+    priceProduct = convertCoin(productSearched.price, 'hasSymbol');
+    timeFilm = getTimeFilm(productSearched.durationFilm);
   }
-
-  async function onIncreaseQuantity() {
-    if (!productSearched) return;
-
-    increaseQuantity(productSearched.id);
-  }
-
-  async function onDecreaseQuantity() {
-    if (!productSearched) return;
-
-    decreaseQuantity(productSearched.id);
-  }
-
-  const priceProduct = productSearched && convertCoin(productSearched?.price, 'hasSymbol');
-
-  const quantityProductInCart = productSearched && Number(findQtyById(productSearched.id));
-
-  const hasProductInCart = quantityProductInCart && quantityProductInCart > 0;
-
-  const timeFilm = productSearched && getTimeFilm(productSearched?.durationFilm);
 
   return {
-    addToCartLoading,
-    onAddToCart,
-    onIncreaseQuantity,
-    onDecreaseQuantity,
     productSearched,
-    error,
-    isLoading,
     priceProduct,
-    hasProductInCart,
-    quantityProductInCart,
     timeFilm,
+    isLoading,
   };
 }

@@ -1,3 +1,3 @@
 import { IChildrenProps } from '../base';
 
-export interface IProvidersProps extends IChildrenProps {}
+export interface IQueryProviderProps extends IChildrenProps {}

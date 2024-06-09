@@ -1,7 +1,10 @@
+import useRemoveButton from '@/hooks/components/useRemoveButton';
 import { IRemoveCardButtonProps } from '@/types/components/RemoveCardButton';
 import AlertConfirmAction from '../../AlertConfirmAction';
 
-export default function RemoveCardButton({ onRemoveToCart }: IRemoveCardButtonProps) {
+export default function RemoveCardButton({ id }: IRemoveCardButtonProps) {
+  const { onRemoveToCart } = useRemoveButton(id);
+
   return (
     <AlertConfirmAction
       onClick={onRemoveToCart}

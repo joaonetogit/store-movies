@@ -1,7 +1,7 @@
 import { queryClient } from '@/functions/QueryClient';
-import { IProvidersProps } from '@/types/context/Providers';
+import { IQueryProviderProps } from '@/types/context/QueryProvider';
 import { QueryClientProvider } from '@tanstack/react-query';
 
-export function QueryProvider({ children }: IProvidersProps) {
+export function QueryProvider({ children }: IQueryProviderProps) {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }

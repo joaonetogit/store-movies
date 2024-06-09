@@ -1,8 +1,9 @@
 import { IProductOnCart } from '@/types/product';
+import { calculateTotalType } from '@/types/utils/calculateTotal';
 import convertCoin from '@/utils/convertCoin';
 
 export const calculateTotal = (
-  type: 'formatted' | 'number',
+  type: calculateTotalType,
   cartItems: IProductOnCart[],
 ): string | number => {
   let total = 0;

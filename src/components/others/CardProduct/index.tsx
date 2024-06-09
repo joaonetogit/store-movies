@@ -2,21 +2,12 @@ import { Badge } from '@/components/ui/Badge';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICardProductProps } from '@/types/components/CardProduct';
-import CardAddCart from '../CardAddCart';
-import CardControlQtd from '../CardControlQtd';
+import CardActionsFooter from '../CardActionsFooter';
 import ImageForCard from '../ImageForCard';
 import LinkToDetailsProduct from '../LinkToDetails';
 
 export default function CardProduct({ product }: ICardProductProps) {
-  const {
-    addToCartLoading,
-    onAddToCart,
-    priceFormatted,
-    hasProductInCart,
-    quantityProductInCart,
-    onIncreaseQuantity,
-    onDecreaseQuantity,
-  } = useCardProduct(product);
+  const { priceFormatted } = useCardProduct(product.id);
 
   return (
     <Card className="flex flex-col items-center justify-between">
@@ -33,16 +24,8 @@ export default function CardProduct({ product }: ICardProductProps) {
         <p>{priceFormatted}</p>
       </CardContent>
       <CardFooter className="flex flex-wrap items-center justify-center gap-4">
-        <LinkToDetailsProduct id={product.id} />
-        {hasProductInCart ? (
-          <CardControlQtd
-            quantityProductInCart={quantityProductInCart}
-            onIncreaseQuantity={onIncreaseQuantity}
-            onDecreaseQuantity={onDecreaseQuantity}
-          />
-        ) : (
-          <CardAddCart addToCartLoading={addToCartLoading} onAddToCart={onAddToCart} />
-        )}
+        <LinkToDetailsProduct title={product.title} />
+        <CardActionsFooter id={product.id} />
       </CardFooter>
     </Card>
   );

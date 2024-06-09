@@ -1,4 +1,3 @@
-import { IProduct } from '@/types/product';
 import { ICartStore } from '@/types/store/useCartStore';
 import { calculateTotal } from '@/utils/calculateTotal';
 import { toast } from 'sonner';
@@ -8,18 +7,22 @@ import { persist } from 'zustand/middleware';
 const useCartStore = create(
   persist<ICartStore>(
     (set, get) => ({
+      itemsStorage: [],
+      setItemsStorage: (items) => {
+        set({ itemsStorage: items });
+      },
       cartItems: [],
-      addItemToCart: (product: IProduct) => {
-        const itemExists = get().cartItems.find((cartItem) => cartItem.id === product.id);
+      addItemToCart: (product) => {
+        const cartItems = get().cartItems;
+        const itemExists = cartItems.find((cartItem) => cartItem.id === product.id);
 
         if (itemExists) {
           itemExists.quantity++;
-
-          set({ cartItems: [...get().cartItems] });
-          toast.success(`Increased quantity in the cart`);
+          set({ cartItems: [...cartItems] });
+          toast.success('Increased quantity in the cart');
         } else {
-          set({ cartItems: [...get().cartItems, { ...product, quantity: 1 }] });
-          toast.success(`Product added on cart`);
+          set({ cartItems: [...cartItems, { ...product, quantity: 1 }] });
+          toast.success('Product added to cart');
         }
       },
       removeItemFromCart: (productId) => {
@@ -28,18 +31,17 @@ const useCartStore = create(
         if (itemExists) {
           const updatedCartItems = get().cartItems.filter((item) => item.id !== productId);
           set({ cartItems: updatedCartItems });
-          toast.success(`Product removed from cart`);
+          toast.success('Product removed from cart');
         }
       },
       increaseQuantity: (productId) => {
-        const itemExists = get().cartItems.find((cartItem) => cartItem.id === productId);
+        const cartItems = get().cartItems;
+        const itemExists = cartItems.find((cartItem) => cartItem.id === productId);
 
         if (itemExists) {
           itemExists.quantity++;
-
           set({ cartItems: [...get().cartItems] });
-
-          toast.success(`Increased quantity in the cart`);
+          toast.success('Increased quantity in the cart');
         }
       },
       decreaseQuantity: (productId) => {
@@ -49,22 +51,20 @@ const useCartStore = create(
           if (itemExists.quantity === 1) {
             const updatedCartItems = get().cartItems.filter((item) => item.id !== productId);
             set({ cartItems: updatedCartItems });
-            toast.success(`Product removed from cart`);
+            toast.success('Product removed from cart');
           } else {
             itemExists.quantity--;
             set({ cartItems: [...get().cartItems] });
-            toast.success(`Decreased quantity in the cart`);
+            toast.success('Decreased quantity in the cart');
           }
         }
       },
       findQtyById: (productId) => {
         const itemExists = get().cartItems.find((cartItem) => cartItem.id === productId);
-
-        if (itemExists) {
-          return itemExists.quantity;
-        }
-
-        return 0;
+        return itemExists ? itemExists.quantity : 0;
+      },
+      findProductById: (productId) => {
+        return get().itemsStorage.find((item) => item.id === productId) || null;
       },
       calculateTotal: (type) => calculateTotal(type, get().cartItems),
       cleanCart: () => {

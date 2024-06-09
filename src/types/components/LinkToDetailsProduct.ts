@@ -1,3 +1,3 @@
 export interface ILinkToDetailsProductProps {
-  id: string;
+  title: string;
 }
