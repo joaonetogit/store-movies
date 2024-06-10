@@ -1,4 +1,4 @@
-export function generateSlug(title: string): string {
+export function GenerateSlug(title: string): string {
   return title
     .toLowerCase()
     .normalize('NFD')

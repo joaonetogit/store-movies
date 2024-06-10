@@ -1,5 +1,5 @@
 import { IProduct, IProductOnCart } from '../product';
-import { calculateTotalType } from '../utils/calculateTotal';
+import { CalculateTotalType } from '../utils/CalculateTotal';
 
 export interface ICartStore {
   itemsStorage: IProduct[];
@@ -11,6 +11,6 @@ export interface ICartStore {
   decreaseQuantity: (productId: string) => void;
   findProductById: (productId: string) => IProduct | null;
   findQtyById: (productId: string) => number;
-  calculateTotal: (type: calculateTotalType) => string | number;
+  calculateTotal: (type: CalculateTotalType) => string | number;
   cleanCart: () => void;
 }

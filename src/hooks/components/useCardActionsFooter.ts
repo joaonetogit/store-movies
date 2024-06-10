@@ -1,5 +1,5 @@
 import useCartStore from '@/store/useCartStore';
-import sleep from '@/utils/sleep';
+import Sleep from '@/utils/Sleep';
 import { useState } from 'react';
 
 export default function useCardActionsFooter(id: string) {
@@ -21,7 +21,7 @@ export default function useCardActionsFooter(id: string) {
   async function onAddToCart() {
     const product = findProductById(id);
     setAddToCartLoading(true);
-    await sleep(300);
+    await Sleep(300);
     product && addItemToCart(product);
     setAddToCartLoading(false);
   }

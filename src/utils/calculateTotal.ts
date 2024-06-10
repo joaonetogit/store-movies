@@ -1,9 +1,9 @@
 import { IProductOnCart } from '@/types/product';
-import { calculateTotalType } from '@/types/utils/calculateTotal';
-import convertCoin from '@/utils/convertCoin';
+import { CalculateTotalType } from '@/types/utils/CalculateTotal';
+import ConvertCoin from './ConvertCoin';
 
-export const calculateTotal = (
-  type: calculateTotalType,
+export const CalculateTotalPrice = (
+  type: CalculateTotalType,
   cartItems: IProductOnCart[],
 ): string | number => {
   let total = 0;
@@ -12,5 +12,5 @@ export const calculateTotal = (
     total += item.price * item.quantity;
   });
 
-  return convertCoin(total, type === 'formatted' ? 'hasSymbol' : 'noSymbol');
+  return ConvertCoin(total, type === 'formatted' ? 'hasSymbol' : 'noSymbol');
 };

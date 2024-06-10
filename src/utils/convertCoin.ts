@@ -1,4 +1,6 @@
-export default function convertCoin(value: number, hasSymbol: 'hasSymbol' | 'noSymbol'): string {
+import { HasSymbol } from "@/types/utils/convertCoin";
+
+export default function ConvertCoin(value: number, hasSymbol: HasSymbol): string {
   const valueFormatted = new Intl.NumberFormat('en-US', {
     style: hasSymbol === 'hasSymbol' ? 'currency' : 'decimal',
     currency: 'USD',

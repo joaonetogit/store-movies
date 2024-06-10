@@ -1,9 +1,9 @@
 import useCartStore from '@/store/useCartStore';
-import convertCoin from '@/utils/convertCoin';
+import ConvertCoin from '@/utils/ConvertCoin';
 
 export default function useCartTotalPrice() {
   const { calculateTotal } = useCartStore();
-  const valueOfShipping = convertCoin(10, 'hasSymbol');
+  const valueOfShipping = ConvertCoin(10, 'hasSymbol');
   const valueToBeShippingFree = 299.99;
   const valueDisplayShippingFree = `$${valueToBeShippingFree}`;
   const totalCartWithSymbol = calculateTotal('formatted');

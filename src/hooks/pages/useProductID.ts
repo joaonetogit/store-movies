@@ -1,6 +1,6 @@
 import { GetProduct } from '@/functions/GetProduct';
-import { getTimeFilm } from '@/utils/calculateTimeFilm';
-import convertCoin from '@/utils/convertCoin';
+import { GetTimeFilm } from '@/utils/CalculateTimeFilm';
+import ConvertCoin from '@/utils/ConvertCoin';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 
@@ -17,8 +17,8 @@ export default function useProductID() {
   let timeFilm;
 
   if (productSearched) {
-    priceProduct = convertCoin(productSearched.price, 'hasSymbol');
-    timeFilm = getTimeFilm(productSearched.durationFilm);
+    priceProduct = ConvertCoin(productSearched.price, 'hasSymbol');
+    timeFilm = GetTimeFilm(productSearched.durationFilm);
   }
 
   return {

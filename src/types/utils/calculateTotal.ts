@@ -1,1 +1,1 @@
-export type calculateTotalType = 'formatted' | 'number';
+export type CalculateTotalType = 'formatted' | 'number';
