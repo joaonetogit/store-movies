@@ -19,7 +19,7 @@ export default function CartCardProduct({ product }: ICartCardProductProps) {
           <p>{priceFormatted}</p>
         </div>
       </CardContent>
-      <CardActionsFooter id={product.id}>
+      <CardActionsFooter className="pb-8" id={product.id}>
         <RemoveCardButton id={product.id} />
       </CardActionsFooter>
     </Card>

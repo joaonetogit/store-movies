@@ -4,7 +4,7 @@ import { Minus, Plus } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { CardFooter } from '../ui/Card';
 
-export default function CardActionsFooter({ id, children }: ICardActionsFooterProps) {
+export default function CardActionsFooter({ className, id, children }: ICardActionsFooterProps) {
   const {
     addToCartLoading,
     hasProductInCart,
@@ -15,7 +15,7 @@ export default function CardActionsFooter({ id, children }: ICardActionsFooterPr
   } = useCardActionsFooter(id);
 
   return (
-    <CardFooter className="flex w-fit flex-col items-center justify-center gap-4 p-0">
+    <CardFooter className={`flex flex-col items-center justify-center gap-4 pb-2 ${className}`}>
       {hasProductInCart ? (
         <div className="flex items-center justify-center gap-4">
           <Button variant="outline" onClick={onIncreaseQuantity}>

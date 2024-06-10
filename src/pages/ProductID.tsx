@@ -33,7 +33,7 @@ export default function ProductID() {
                   </p>
                 </div>
                 <p className="text-2xl">{priceProduct}</p>
-                <CardActionsFooter id={productSearched.id} />
+                <CardActionsFooter className="w-fit p-0" id={productSearched.id} />
               </div>
             </div>
           </>

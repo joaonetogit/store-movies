@@ -1,4 +1,4 @@
-import { ChevronLeft, Slash } from 'lucide-react';
+import { Slash } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import {
   Breadcrumb,
@@ -17,13 +17,11 @@ export default function BreadcrumbProductID({ titleProduct }: { titleProduct: st
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <BreadcrumbLinkCustom path="/">
-              <ChevronLeft /> Home
-            </BreadcrumbLinkCustom>
+            <BreadcrumbLinkCustom path="/">Home</BreadcrumbLinkCustom>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <Slash width={10} />
+          <Slash width={8} />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
