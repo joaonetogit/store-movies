@@ -6,7 +6,7 @@ export default function FooterSocialsLink({ children, link }: IFooterSocialsLink
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-full bg-blue-400 p-2 transition-all hover:bg-blue-700"
+      className="block rounded-full bg-blue-600 p-2 transition-all hover:bg-blue-800 text-white"
     >
       {children}
     </a>
