@@ -6,7 +6,7 @@ import ImageForCard from '../../ImageForCard';
 import RemoveCardButton from '../RemoveCardButton';
 
 export default function CartCardProduct({ product }: ICartCardProductProps) {
-  const { priceFormatted } = useCardProduct(product.id);
+  const { priceFormatted, subtotal } = useCardProduct(product.id);
 
   return (
     <Card>
@@ -17,6 +17,10 @@ export default function CartCardProduct({ product }: ICartCardProductProps) {
         <div className="flex items-center gap-2">
           <p>Price:</p>
           <p>{priceFormatted}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <p>Subtotal:</p>
+          <p>{subtotal}</p>
         </div>
       </CardContent>
       <CardActionsFooter className="pb-8" id={product.id}>
