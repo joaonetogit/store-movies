@@ -1,6 +1,7 @@
 import Footer from '@/components/others/Footer';
 import Header from '@/components/others/Header';
 import { ModeToggle } from '@/components/others/ModeToggle';
+import SafeAreaView from '@/components/others/SafeAreaView';
 import { Toaster } from '@/components/ui/Sonner';
 import { ILayoutAppProps } from '@/types/layouts/LayoutApp';
 
@@ -8,7 +9,9 @@ export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppPro
   return (
     <>
       <Header onlyHeaderLogo={headerHasOnlyLogo} />
-      <main className="mb-[5vh] mt-[15vh]">{children}</main>
+      <SafeAreaView>
+        <main className="min-h-main">{children}</main>
+      </SafeAreaView>
       <Footer />
       <Toaster />
       <ModeToggle />

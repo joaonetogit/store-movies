@@ -13,7 +13,7 @@ export function ModeToggle() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="fixed bottom-6 left-6">
+    <div className="fixed bottom-20 left-6">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon" className="rounded-full">
@@ -22,7 +22,7 @@ export function ModeToggle() {
             <span className="sr-only">Toggle theme</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
           <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>

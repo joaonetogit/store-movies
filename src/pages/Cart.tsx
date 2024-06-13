@@ -6,7 +6,6 @@ import useCartStore from '@/store/useCartStore';
 
 export default function Cart() {
   const { cartItems } = useCartStore();
-
   const hasItemsOnCart = cartItems.length > 0;
 
   return (

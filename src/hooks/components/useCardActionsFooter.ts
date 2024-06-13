@@ -8,7 +8,7 @@ export default function useCardActionsFooter(id: string) {
 
   const quantityProductInCart = findQtyById(id);
   const hasProductInCart = quantityProductInCart > 0;
-  const [addToCartLoading, setAddToCartLoading] = useState(false);
+  const [addToCartLoading, setAddToCartLoading] = useState<boolean>(false);
 
   async function onIncreaseQuantity() {
     increaseQuantity(id);

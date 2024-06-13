@@ -8,6 +8,7 @@ export interface IProduct {
   quantityAvailable: number;
   description: string;
   durationFilm: number;
+  category: string;
 }
 
 export interface IProductOnCart extends IProduct {

@@ -17,6 +17,15 @@ module.exports = {
       },
     },
     extend: {
+      margin: {
+        header: '92px',
+      },
+      padding: {
+        header: '92px',
+      },
+      minHeight: {
+        main: 'calc(100dvh - 92px)',
+      },
       height: {
         main: 'calc(100dvh - 92px)',
       },

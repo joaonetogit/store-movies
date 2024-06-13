@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <LayoutApp>
       <Container>
-        <h1 className="mb-10 text-center text-2xl">Buy right now!</h1>
+        <h1 className="py-10 text-center text-2xl">Buy right now!</h1>
         {isLoading && <Loading />}
         {products && <CardProductList products={products} />}
       </Container>
