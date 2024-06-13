@@ -10,7 +10,7 @@ export async function GetProductsByCategory(category: string): Promise<IProduct[
       url: URLToGetProducts,
     });
 
-    const product: IProduct[] = response.data;
+    const product: IProduct[] = response.data.products;
     return product;
   } catch (error) {
     console.error(`There was an error when searching for products by category ${category}:`, error);

@@ -2,7 +2,7 @@ import api from '@/api/api';
 import { IProduct } from '@/types/product';
 
 export async function GetProduct(slug: string): Promise<IProduct | null> {
-  const URLToGetProduct = `/products/${slug}`;
+  const URLToGetProduct = `/product/${slug}`;
 
   try {
     const response = await api({

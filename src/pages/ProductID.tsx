@@ -4,7 +4,7 @@ import Container from '@/components/others/Container';
 import Divider from '@/components/others/Divider';
 import ImageForCard from '@/components/others/ImageForCard';
 import Loading from '@/components/others/Loading';
-import OthersProductsSameCategory from '@/components/others/OthersProductsSameCategory';
+import OthersProductsByCategory from '@/components/others/OthersProductsByCategory';
 import useProductID from '@/hooks/pages/useProductID';
 import LayoutApp from '@/layouts/LayoutApp';
 import { Clock9 } from 'lucide-react';
@@ -32,7 +32,7 @@ export default function ProductID() {
                   <h2 className="text-4xl">{productSearched.title}</h2>
                   <p>{productSearched.description}</p>
                   <div className="mb-8 flex flex-wrap items-center gap-4">
-                    <p className="rounded-full border border-border px-4 py-2">
+                    <p className="rounded-full border border-border px-4 py-1">
                       {productSearched.category}
                     </p>
                     <p className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export default function ProductID() {
                 </div>
               </div>
               <Divider />
-              <OthersProductsSameCategory category={productSearched.category} />
+              <OthersProductsByCategory id={productSearched.id} category={productSearched.category} />
             </>
           )}
         </div>
