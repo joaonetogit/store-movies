@@ -1,12 +1,10 @@
-import { IOthersProductsByCategoryListProps } from '@/types/components/OthersProductsByCategory';
+import { IOthersProductsListProps } from '@/types/components/OthersProducts';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
-import OthersProdcutsByCategoryCard from './OthersProdcutsByCategoryCard';
+import OthersProdcutsCard from './OthersProdcutsCard';
 
-export default function OthersProductsByCategoryList({
-  productsByCategory,
-}: IOthersProductsByCategoryListProps) {
+export default function OthersProductsList({ products }: IOthersProductsListProps) {
   const settings = {
     infinite: true,
     speed: 500,
@@ -37,8 +35,8 @@ export default function OthersProductsByCategoryList({
   return (
     <div className="w-full px-10">
       <Slider {...settings}>
-        {productsByCategory.map((item) => (
-          <OthersProdcutsByCategoryCard key={item.id} product={item} />
+        {products.map((item) => (
+          <OthersProdcutsCard key={item.id} product={item} />
         ))}
       </Slider>
     </div>

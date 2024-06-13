@@ -1,12 +1,11 @@
 import { Badge } from '@/components/ui/Badge';
-import { IOthersProductsByCategoryCardProps } from '@/types/components/OthersProductsByCategory';
+import { IOthersProductsCardProps } from '@/types/components/OthersProducts';
 import ConvertCoin from '@/utils/ConvertCoin';
 import ImageForCard from '../ImageForCard';
 
-export default function OthersProdcutsByCategoryCard({
-  product,
-}: IOthersProductsByCategoryCardProps) {
+export default function OthersProdcutsCard({ product }: IOthersProductsCardProps) {
   const priceFormatted = ConvertCoin(product.price, 'hasSymbol');
+
   return (
     <div className="flex flex-col items-center justify-center">
       <ImageForCard image={product.image} title={product.title} />

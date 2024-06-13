@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <LayoutApp>
       <Container>
-        <div className="h-screen flex flex-col items-center justify-center gap-10">
+        <div className="flex h-screen flex-col items-center justify-center gap-10">
           <div className="text-center">
             <h1 className="text-6xl">404</h1>
             <p className="text-lg">Page not found</p>

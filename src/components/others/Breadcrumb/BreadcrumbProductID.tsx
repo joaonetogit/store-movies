@@ -1,13 +1,13 @@
 import { Slash } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
+import BreadcrumbLinkCustom from '.';
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from '../ui/Breadcrumb';
-import BreadcrumbLinkCustom from './Breadcrumb';
+} from '../../ui/Breadcrumb';
 
 export default function BreadcrumbProductID({ titleProduct }: { titleProduct: string }) {
   const location = useLocation();

@@ -15,7 +15,7 @@ export default function Header({ onlyHeaderLogo = false }: IHeaderProps) {
         >
           <Logo />
           {!onlyHeaderLogo && (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <HeaderCart />
             </div>
           )}

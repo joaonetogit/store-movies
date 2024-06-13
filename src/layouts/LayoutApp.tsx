@@ -10,7 +10,7 @@ export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppPro
     <>
       <Header onlyHeaderLogo={headerHasOnlyLogo} />
       <SafeAreaView>
-        <main className="min-h-main">{children}</main>
+        <main className="min-h-main pt-10 sm:pt-16">{children}</main>
       </SafeAreaView>
       <Footer />
       <Toaster />

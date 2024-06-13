@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Logo({ size = 'lg' }: ILogoProps) {
   const sizeClasses: ISizeClasses = {
     sm: 'text-2xl',
-    lg: 'text-4xl',
+    lg: 'text-2xl sm:text-4xl',
   } as const;
 
   return (

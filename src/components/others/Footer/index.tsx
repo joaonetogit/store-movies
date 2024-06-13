@@ -6,12 +6,12 @@ export default function Footer() {
   return (
     <footer data-testid="footer-test" className="border-0 border-t border-border py-8">
       <Container>
-        <div className="flex flex-col items-center justify-between sm:flex-row gap-6">
-          <p className="flex-1 order-3 sm:order-2">All rights reserved. @João Pinheiro Dev</p>
-          <div className="flex-1 order-1 sm:order-2">
+        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+          <p className="order-3 flex-1 sm:order-2">All rights reserved. @João Pinheiro Dev</p>
+          <div className="order-1 flex flex-1 items-center justify-center sm:order-2">
             <Logo size="sm" />
           </div>
-          <div className="flex-1 order-2 sm:order-2">
+          <div className="order-2 flex-1 sm:order-2">
             <FooterSocials />
           </div>
         </div>
