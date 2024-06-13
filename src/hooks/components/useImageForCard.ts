@@ -26,7 +26,7 @@ export default function useImageForCard(image: string) {
   const sizeClasses: ISizeClasses = {
     sm: 'max-w-xs max-h-20',
     lg: 'max-w-lg max-h-48',
-    xl: 'max-w-xl max-h-96',
+    xl: 'max-w-full sm:max-w-2xl max-h-64 sm:max-h-[600px]',
   } as const;
 
   return { loadingImage, handleImageLoad, handleImageError, imageSrc, sizeClasses };

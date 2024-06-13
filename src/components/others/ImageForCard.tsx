@@ -7,15 +7,17 @@ export default function ImageForCard({ image, title, size = 'lg' }: IImageForCar
     useImageForCard(image);
 
   return (
-    <div className="relative overflow-hidden rounded-md">
+    <div className="relative flex w-full items-center justify-center">
       {loadingImage && <Loading />}
-      <img
-        className={`${sizeClasses[size]} max-h- block h-full w-full object-contain transition-opacity duration-300 ${loadingImage ? 'opacity-0' : 'opacity-100'}`}
-        src={imageSrc}
-        alt={`Image - ${title}`}
-        onLoad={handleImageLoad}
-        onError={handleImageError}
-      />
+      <div className="relative overflow-hidden rounded-lg">
+        <img
+          className={`${sizeClasses[size]} block h-full w-full object-contain transition-opacity duration-300 ${loadingImage ? 'opacity-0' : 'opacity-100'}`}
+          src={imageSrc}
+          alt={`Image - ${title}`}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      </div>
     </div>
   );
 }

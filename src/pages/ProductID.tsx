@@ -15,13 +15,13 @@ export default function ProductID() {
   return (
     <LayoutApp>
       <Container>
-        <div className="pt-20">
+        <div className="pt-10 sm:pt-20">
           {isLoading && !productSearched && <Loading />}
           {!isLoading && productSearched && (
             <>
               <BreadcrumbProductID titleProduct={productSearched?.title} />
 
-              <div className="mb-20 flex justify-between gap-20">
+              <div className="mb-20 flex flex-col justify-between gap-10 lg:flex-row lg:gap-20">
                 <ImageForCard
                   image={productSearched.image}
                   title={productSearched.title}
@@ -29,9 +29,9 @@ export default function ProductID() {
                 />
 
                 <div className="flex w-full max-w-2xl flex-col gap-4">
-                  <h2 className="text-4xl">{productSearched.title}</h2>
+                  <h2 className="text-2xl sm:text-4xl">{productSearched.title}</h2>
                   <p>{productSearched.description}</p>
-                  <div className="mb-8 flex flex-wrap items-center gap-4">
+                  <div className="mb-2 sm:mb-8 flex flex-wrap items-center gap-4">
                     <p className="rounded-full border border-border px-4 py-1">
                       {productSearched.category}
                     </p>
@@ -44,8 +44,12 @@ export default function ProductID() {
                   <CardActionsFooter className="w-fit p-0" id={productSearched.id} />
                 </div>
               </div>
+
               <Divider />
-              <OthersProductsByCategory id={productSearched.id} category={productSearched.category} />
+              <OthersProductsByCategory
+                id={productSearched.id}
+                category={productSearched.category}
+              />
             </>
           )}
         </div>
