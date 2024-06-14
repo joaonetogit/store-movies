@@ -20,7 +20,7 @@ export default function CardProduct({ product }: ICardProductProps) {
           </div>
         )}
 
-        <h2 className="mb-2 mt-4 text-center text-lg sm:text-2xl">{product.title}</h2>
+        <h2 className="mb-2 mt-4 text-center text-lg font-bold sm:text-xl">{product.title}</h2>
         <p>{priceFormatted}</p>
       </CardContent>
       <CardFooter className="flex flex-wrap items-center justify-center gap-4">

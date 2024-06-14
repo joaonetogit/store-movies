@@ -20,12 +20,12 @@ export const router = createBrowserRouter([
     element: <BuySuccess />,
   },
   {
-    path: '/product/:category',
-    element: <Category />,
-  },
-  {
     path: '/product/:title',
     element: <ProductID />,
+  },
+  {
+    path: '/product/category/:category',
+    element: <Category />,
   },
   {
     path: '*',

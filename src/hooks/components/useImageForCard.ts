@@ -6,7 +6,7 @@ const placeholderImage = 'https://placehold.co/500x600';
 
 export default function useImageForCard(image: string) {
   const [loadingImage, setLoadingImage] = useState<boolean>(true);
-  const [imageSrc, setImageSrc] = useState<string>(image);
+  const [imageSrc, setImageSrc] = useState<string>('');
 
   async function handleImageLoad() {
     await Sleep(500);

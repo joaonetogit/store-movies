@@ -35,9 +35,7 @@ export default function OthersProductsList({ products }: IOthersProductsListProp
   return (
     <div className="w-full px-10">
       <Slider {...settings}>
-        {products.map((item) => (
-          <OthersProdcutsCard key={item.id} product={item} />
-        ))}
+        {products && products.map((item) => <OthersProdcutsCard key={item.id} product={item} />)}
       </Slider>
     </div>
   );

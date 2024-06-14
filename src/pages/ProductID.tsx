@@ -1,24 +1,36 @@
 import BreadcrumbProductID from '@/components/others/Breadcrumb/BreadcrumbProductID';
 import CardActionsFooter from '@/components/others/CardActionsFooter';
 import Container from '@/components/others/Container';
-import Divider from '@/components/others/Divider';
 import ImageForCard from '@/components/others/ImageForCard';
 import Loading from '@/components/others/Loading';
 import OthersProducts from '@/components/others/OthersProducts';
 import useProductID from '@/hooks/pages/useProductID';
 import LayoutApp from '@/layouts/LayoutApp';
 import { Clock9 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function ProductID() {
-  const { productSearched, priceProduct, timeFilm, isLoading } = useProductID();
+  const {
+    productSearched,
+    priceProduct,
+    timeFilm,
+    isLoadingProduct,
+    isLoadingProductsCategory,
+    productsCategoryWithoutCurrent,
+    othersProducts,
+    categoryNormalize,
+  } = useProductID();
 
   return (
     <LayoutApp>
       <Container>
-        {isLoading && !productSearched && <Loading />}
-        {!isLoading && productSearched && (
+        {isLoadingProduct && !productSearched && <Loading />}
+        {!isLoadingProduct && productSearched && (
           <>
-            <BreadcrumbProductID titleProduct={productSearched?.title} />
+            <BreadcrumbProductID
+              category={productSearched?.category}
+              titleProduct={productSearched?.title}
+            />
 
             <div className="mb-20 flex flex-col justify-between gap-10 lg:flex-row lg:gap-20">
               <ImageForCard image={productSearched.image} title={productSearched.title} size="xl" />
@@ -27,9 +39,12 @@ export default function ProductID() {
                 <h2 className="text-2xl sm:text-4xl">{productSearched.title}</h2>
                 <p>{productSearched.description}</p>
                 <div className="mb-2 flex flex-wrap items-center gap-4 sm:mb-8">
-                  <p className="rounded-full border border-border px-4 py-1">
+                  <Link
+                    to={`/product/category/${categoryNormalize}`}
+                    className="rounded-full border border-border px-4 py-1"
+                  >
                     {productSearched.category}
-                  </p>
+                  </Link>
                   <p className="flex items-center gap-2">
                     <Clock9 />
                     {timeFilm}
@@ -40,8 +55,15 @@ export default function ProductID() {
               </div>
             </div>
 
-            <Divider />
-            <OthersProducts id={productSearched.id} category={productSearched.category} />
+            <div className="pb-20 pt-10">
+              <OthersProducts
+                title={`Others products on ${productSearched.category}`}
+                products={productsCategoryWithoutCurrent}
+                isLoading={isLoadingProductsCategory}
+              />
+            </div>
+
+            <OthersProducts title={`Others products on storage`} products={othersProducts} />
           </>
         )}
       </Container>
