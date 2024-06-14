@@ -1,4 +1,4 @@
-import { IBreadcrumbProductIDProps } from '@/types/components/BreadcrumbProductID';
+import { IBreadcrumbCustomProps } from '@/types/components/BreadcrumbCustom';
 import { GenerateSlug } from '@/utils/GenerateSlug';
 import { Slash } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
@@ -11,10 +11,10 @@ import {
   BreadcrumbSeparator,
 } from '../../ui/Breadcrumb';
 
-export default function BreadcrumbProductID({ titleProduct, category }: IBreadcrumbProductIDProps) {
+export default function BreadcrumbCustom({ titleProduct, category }: IBreadcrumbCustomProps) {
   const location = useLocation();
   const categoryNormalize = GenerateSlug(category);
-  const URLCategory = `/product/category/${categoryNormalize}`
+  const URLCategory = `/product/category/${categoryNormalize}`;
 
   return (
     <Breadcrumb className="mb-10">
@@ -32,14 +32,18 @@ export default function BreadcrumbProductID({ titleProduct, category }: IBreadcr
             <BreadcrumbLinkCustom path={URLCategory}>{category}</BreadcrumbLinkCustom>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <Slash width={8} />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <BreadcrumbLinkCustom path={location.pathname}>{titleProduct}</BreadcrumbLinkCustom>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
+        {titleProduct && (
+          <>
+            <BreadcrumbSeparator>
+              <Slash width={8} />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <BreadcrumbLinkCustom path={location.pathname}>{titleProduct}</BreadcrumbLinkCustom>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+          </>
+        )}
       </BreadcrumbList>
     </Breadcrumb>
   );

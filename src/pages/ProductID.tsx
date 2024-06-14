@@ -1,4 +1,4 @@
-import BreadcrumbProductID from '@/components/others/Breadcrumb/BreadcrumbProductID';
+import BreadcrumbCustom from '@/components/others/Breadcrumb/BreadcrumbProductID';
 import CardActionsFooter from '@/components/others/CardActionsFooter';
 import Container from '@/components/others/Container';
 import ImageForCard from '@/components/others/ImageForCard';
@@ -27,7 +27,7 @@ export default function ProductID() {
         {isLoadingProduct && !productSearched && <Loading />}
         {!isLoadingProduct && productSearched && (
           <>
-            <BreadcrumbProductID
+            <BreadcrumbCustom
               category={productSearched?.category}
               titleProduct={productSearched?.title}
             />
