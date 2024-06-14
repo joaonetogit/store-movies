@@ -18,7 +18,7 @@ export default function ProductID() {
     isLoadingProductsCategory,
     productsCategoryWithoutCurrent,
     othersProducts,
-    categoryNormalize,
+    URLToCategory,
   } = useProductID();
 
   return (
@@ -36,21 +36,21 @@ export default function ProductID() {
               <ImageForCard image={productSearched.image} title={productSearched.title} size="xl" />
 
               <div className="flex w-full max-w-2xl flex-col gap-4">
-                <h2 className="text-2xl sm:text-4xl">{productSearched.title}</h2>
+                <h2 className="text-2xl font-bold sm:text-4xl">{productSearched.title}</h2>
                 <p>{productSearched.description}</p>
                 <div className="mb-2 flex flex-wrap items-center gap-4 sm:mb-8">
                   <Link
-                    to={`/product/category/${categoryNormalize}`}
-                    className="rounded-full border border-border px-4 py-1"
+                    to={URLToCategory}
+                    className="rounded-full border border-border px-4 py-1 font-medium"
                   >
                     {productSearched.category}
                   </Link>
-                  <p className="flex items-center gap-2">
+                  <p className="flex items-center gap-2 font-medium">
                     <Clock9 />
                     {timeFilm}
                   </p>
                 </div>
-                <p className="text-2xl">{priceProduct}</p>
+                <p className="text-2xl font-bold">{priceProduct}</p>
                 <CardActionsFooter className="w-fit p-0" id={productSearched.id} />
               </div>
             </div>

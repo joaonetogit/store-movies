@@ -46,6 +46,7 @@ export default function useProductID() {
 
   const categoryNormalize = categoryProduct && GenerateSlug(categoryProduct);
 
+  const URLToCategory = `/product/category/${categoryNormalize}`;
 
   return {
     categoryNormalize,
@@ -56,5 +57,6 @@ export default function useProductID() {
     isLoadingProductsCategory,
     productsCategoryWithoutCurrent,
     othersProducts,
+    URLToCategory
   };
 }
