@@ -1,5 +1,6 @@
 import { FecthAllProducts } from '@/functions/FetchAllProducts';
 import useCartStore from '@/store/useCartStore';
+import { GetUniqueCategories } from '@/utils/GetCategories';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
@@ -19,5 +20,7 @@ export default function useHome() {
     products && setItemsStorage(products);
   }, [products, setItemsStorage]);
 
-  return { products, error, isLoading };
+  const categories = products && GetUniqueCategories(products);
+
+  return { products, error, isLoading, categories };
 }
