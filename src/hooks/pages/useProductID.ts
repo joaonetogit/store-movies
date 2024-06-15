@@ -57,6 +57,6 @@ export default function useProductID() {
     isLoadingProductsCategory,
     productsCategoryWithoutCurrent,
     othersProducts,
-    URLToCategory
+    URLToCategory,
   };
 }

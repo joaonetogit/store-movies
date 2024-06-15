@@ -24,6 +24,6 @@ export default function useScrollToTop() {
       window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
-  
+
   return { isVisible, handleScrollToTop };
 }

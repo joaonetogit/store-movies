@@ -10,7 +10,7 @@ export default function CartTotalPrice() {
         <p className="text-2xl">Total: {totalCartWithSymbol}</p>
       </div>
       {whenShippingIsFree ? (
-        <p>Congratulations, your purchase is free!</p>
+        <p>Congratulations, your shipping is free!</p>
       ) : (
         <>
           <p>Value shipping: {valueOfShipping}</p>

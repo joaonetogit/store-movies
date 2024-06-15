@@ -1,3 +1,3 @@
 export interface IHomeCategoriesProps {
-  categories: string[]
+  categories: string[];
 }

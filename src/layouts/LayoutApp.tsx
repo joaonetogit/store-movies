@@ -5,6 +5,7 @@ import SafeAreaView from '@/components/others/SafeAreaView';
 import ScrollToTop from '@/components/others/ScrollToTop';
 import { Toaster } from '@/components/ui/Sonner';
 import { ILayoutAppProps } from '@/types/layouts/LayoutApp';
+import { ScrollRestoration } from 'react-router-dom';
 
 export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppProps) {
   return (
@@ -17,6 +18,7 @@ export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppPro
       <Toaster />
       <ModeToggle />
       <ScrollToTop />
+      <ScrollRestoration />
     </>
   );
 }
