@@ -32,7 +32,7 @@ export default function ProductID() {
               titleProduct={productSearched?.title}
             />
 
-            <div className="mb-20 flex flex-col justify-between gap-10 lg:flex-row lg:gap-20">
+            <div className="mb-6 flex flex-col justify-between gap-10 sm:mb-20 lg:flex-row lg:gap-20">
               <ImageForCard image={productSearched.image} title={productSearched.title} size="xl" />
 
               <div className="flex w-full max-w-2xl flex-col gap-4">
@@ -55,7 +55,7 @@ export default function ProductID() {
               </div>
             </div>
 
-            <div className="pb-20 pt-10">
+            <div className="py-4 sm:pb-20">
               <OthersProducts
                 title={`Others products on ${productSearched.category}`}
                 products={productsCategoryWithoutCurrent}
