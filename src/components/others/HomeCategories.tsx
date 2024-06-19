@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 export default function HomeCategories({ categories }: IHomeCategoriesProps) {
   return (
-    <div className="mb-10 flex items-center justify-center gap-4">
-      <h2 className="text-lg">Categories</h2>
-      <div className="flex items-center justify-center space-x-2">
+    <div className="mb-10 flex flex-wrap items-center justify-center gap-4">
+      <h2 className="text-lg sm:text-sm">Categories</h2>
+      <div className="flex flex-wrap items-center justify-center gap-2">
         {categories.map((category) => (
           <Link
             key={category}
