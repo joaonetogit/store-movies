@@ -17,8 +17,17 @@ export default function useProductID() {
     enabled: !!titleProduct,
   });
 
-  const idProduct = productSearched?.id as string;
-  const categoryProduct = productSearched?.category as string;
+  let priceProduct = null;
+  let timeFilm = null;
+  let idProduct = null;
+  let categoryProduct = '';
+
+  if (productSearched) {
+    priceProduct = ConvertCoin(productSearched.price, 'hasSymbol');
+    timeFilm = GetTimeFilm(productSearched.durationFilm);
+    idProduct = productSearched.id as string;
+    categoryProduct = productSearched?.category as string;
+  }
 
   const { data: productsCategory, isLoading: isLoadingProductsCategory } = useQuery({
     queryKey: [categoryProduct],
@@ -26,28 +35,20 @@ export default function useProductID() {
     enabled: !!categoryProduct,
   });
 
-  let priceProduct = '';
-  let timeFilm = '';
-
-  if (productSearched) {
-    priceProduct = ConvertCoin(productSearched.price, 'hasSymbol');
-    timeFilm = GetTimeFilm(productSearched.durationFilm);
-  }
-
   const productsCategoryWithoutCurrent = productsCategory?.filter(
     (product) => product.id !== idProduct,
   );
 
-  const { data: products } = useQuery({
+  const { data: allProducts } = useQuery({
     queryKey: ['AllProducts'],
     queryFn: FetchAllProducts,
   });
 
-  const othersProducts = products?.filter(
+  const othersProducts = allProducts?.filter(
     (product) => !productsCategoryWithoutCurrent?.find((item) => item.id === product.id),
   );
 
-  const categoryNormalize = categoryProduct && GenerateSlug(categoryProduct);
+  const categoryNormalize = GenerateSlug(categoryProduct);
 
   const URLToCategory = `/product/category/${categoryNormalize}`;
 
