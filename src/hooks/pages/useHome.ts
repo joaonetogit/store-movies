@@ -7,7 +7,7 @@ export default function useHome() {
   const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: FetchAllProducts,
-    staleTime: 1000 * 60 * 5,
+    staleTime: 60000,
   });
 
   const memoizedProducts = useMemo(() => products, [products]);
