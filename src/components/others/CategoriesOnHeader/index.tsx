@@ -37,7 +37,7 @@ export default function CategoriesOnHeader() {
 
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
-      {!isTablet ? RenderDropdownMenu() : RenderCategoriesList()}
+      {isTablet ? RenderCategoriesList() : RenderDropdownMenu()}
     </div>
   );
 }

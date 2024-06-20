@@ -10,7 +10,7 @@ export default function useCategory() {
   const categoryToSearchCapitalized = category ? CapitalizeWords(category) : '';
 
   const { data: productCategory, isLoading } = useQuery({
-    queryKey: ['product', categoryToSearch],
+    queryKey: [categoryToSearch],
     queryFn: () => GetProductsByCategory(categoryToSearch),
     enabled: !!categoryToSearch,
   });
