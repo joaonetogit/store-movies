@@ -1,7 +1,7 @@
 import api from '@/api/api';
 import { IProduct } from '@/types/product';
 
-export async function FecthAllProducts(): Promise<IProduct[]> {
+export async function FetchAllProducts(): Promise<IProduct[]> {
   const URLToGetProducts = '/products';
 
   try {

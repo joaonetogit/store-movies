@@ -1,3 +1,3 @@
-import { IChildrenProps } from '../base';
-
-export interface IHeaderCartQuantityProps extends IChildrenProps {}
+export interface IHeaderCartQuantityProps {
+  quantity: number;
+}

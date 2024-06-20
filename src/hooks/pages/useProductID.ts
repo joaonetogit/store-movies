@@ -1,6 +1,6 @@
+import { FetchAllProducts } from '@/functions/FetchAllProducts';
 import { GetProduct } from '@/functions/GetProduct';
 import { GetProductsByCategory } from '@/functions/GetProductsByCategory';
-import useCartStore from '@/store/useCartStore';
 import { GetTimeFilm } from '@/utils/CalculateTimeFilm';
 import ConvertCoin from '@/utils/ConvertCoin';
 import { GenerateSlug } from '@/utils/GenerateSlug';
@@ -11,10 +11,8 @@ export default function useProductID() {
   const { title } = useParams();
   const titleProduct = title as string;
 
-  const { itemsStorage } = useCartStore();
-
   const { data: productSearched, isLoading: isLoadingProduct } = useQuery({
-    queryKey: ['product', titleProduct],
+    queryKey: [titleProduct],
     queryFn: () => GetProduct(titleProduct),
     enabled: !!titleProduct,
   });
@@ -23,13 +21,13 @@ export default function useProductID() {
   const categoryProduct = productSearched?.category as string;
 
   const { data: productsCategory, isLoading: isLoadingProductsCategory } = useQuery({
-    queryKey: ['category', categoryProduct],
+    queryKey: [categoryProduct],
     queryFn: () => GetProductsByCategory(categoryProduct),
     enabled: !!categoryProduct,
   });
 
-  let priceProduct;
-  let timeFilm;
+  let priceProduct = '';
+  let timeFilm = '';
 
   if (productSearched) {
     priceProduct = ConvertCoin(productSearched.price, 'hasSymbol');
@@ -40,7 +38,12 @@ export default function useProductID() {
     (product) => product.id !== idProduct,
   );
 
-  const othersProducts = itemsStorage?.filter(
+  const { data: products } = useQuery({
+    queryKey: ['products'],
+    queryFn: FetchAllProducts,
+  });
+
+  const othersProducts = products?.filter(
     (product) => !productsCategoryWithoutCurrent?.find((item) => item.id === product.id),
   );
 

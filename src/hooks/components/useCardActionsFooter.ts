@@ -1,14 +1,15 @@
+import { FindProductById } from '@/functions/QueryGetProductByID';
 import useCartStore from '@/store/useCartStore';
 import Sleep from '@/utils/Sleep';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function useCardActionsFooter(id: string) {
-  const { addItemToCart, increaseQuantity, decreaseQuantity, findQtyById, findProductById } =
-    useCartStore();
+  const { addItemToCart, increaseQuantity, decreaseQuantity, findQtyById } = useCartStore();
 
   const quantityProductInCart = findQtyById(id);
   const hasProductInCart = quantityProductInCart > 0;
   const [addToCartLoading, setAddToCartLoading] = useState<boolean>(false);
+  const product = useMemo(() => FindProductById(id), [id]);
 
   async function onIncreaseQuantity() {
     increaseQuantity(id);
@@ -19,7 +20,6 @@ export default function useCardActionsFooter(id: string) {
   }
 
   async function onAddToCart() {
-    const product = findProductById(id);
     setAddToCartLoading(true);
     await Sleep(300);
     product && addItemToCart(product);

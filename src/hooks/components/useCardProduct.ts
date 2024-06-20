@@ -1,15 +1,19 @@
+import { FindProductById } from '@/functions/QueryGetProductByID';
 import useCartStore from '@/store/useCartStore';
 import ConvertCoin from '@/utils/ConvertCoin';
+import { useMemo } from 'react';
 
 export default function useCardProduct(id: string) {
-  const { findProductById, findQtyById } = useCartStore();
-  const product = findProductById(id);
-  const priceFormatted = product && ConvertCoin(product.price, 'hasSymbol');
-  const quantityProduct = product && Number(findQtyById(id));
+  const { findQtyById } = useCartStore();
+  const product = useMemo(() => FindProductById(id), [id]);
+  const priceFormatted = product ? ConvertCoin(product.price, 'hasSymbol') : null;
 
   let subtotal = null;
-  if (product && quantityProduct) {
-    subtotal = ConvertCoin(product.price * quantityProduct, 'hasSymbol');
+  if (product) {
+    const quantityProduct = Number(findQtyById(id));
+    if (quantityProduct) {
+      subtotal = ConvertCoin(product.price * quantityProduct, 'hasSymbol');
+    }
   }
 
   return {

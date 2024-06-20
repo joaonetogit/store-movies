@@ -1,26 +1,23 @@
-import { FecthAllProducts } from '@/functions/FetchAllProducts';
-import useCartStore from '@/store/useCartStore';
-import { GetUniqueCategories } from '@/utils/GetCategories';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { FetchAllProducts } from '@/functions/FetchAllProducts';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useMemo } from 'react';
 
 export default function useHome() {
-  const {
-    data: products,
-    error,
-    isLoading,
-  } = useQuery({
+  const queryClient = useQueryClient();
+  const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
-    queryFn: FecthAllProducts,
+    queryFn: FetchAllProducts,
+    staleTime: 1000 * 60 * 5,
   });
 
-  const { setItemsStorage } = useCartStore();
+  const memoizedProducts = useMemo(() => products, [products]);
 
   useEffect(() => {
-    products && setItemsStorage(products);
-  }, [products, setItemsStorage]);
+    queryClient.prefetchQuery({
+      queryKey: ['products'],
+      queryFn: FetchAllProducts,
+    });
+  }, [queryClient]);
 
-  const categories = products && GetUniqueCategories(products);
-
-  return { products, error, isLoading, categories };
+  return { products: memoizedProducts, isLoading };
 }
