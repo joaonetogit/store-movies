@@ -12,7 +12,7 @@ export default function Category() {
     <LayoutApp>
       <Container>
         <BreadcrumbCustom category={categoryToSearchCapitalized} />
-        <h1 className="mb-4 text-4xl font-bold">Category: {categoryToSearchCapitalized}</h1>
+        <h1 className="mb-10 text-4xl font-bold">Category: {categoryToSearchCapitalized}</h1>
 
         {isLoading && <Loading />}
         {!isLoading && (

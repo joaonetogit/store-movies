@@ -4,6 +4,8 @@ import Container from '@/components/others/Container';
 import ImageForCard from '@/components/others/ImageForCard';
 import Loading from '@/components/others/Loading';
 import OthersProducts from '@/components/others/OthersProducts';
+import CardFooterProductID from '@/components/others/ProductID/CardFooterProductID';
+import CardProductID from '@/components/others/ProductID/CardProductID';
 import useProductID from '@/hooks/pages/useProductID';
 import LayoutApp from '@/layouts/LayoutApp';
 import { Clock9 } from 'lucide-react';
@@ -28,14 +30,14 @@ export default function ProductID() {
         {!isLoadingProduct && productSearched && (
           <>
             <BreadcrumbCustom
-              category={productSearched?.category}
-              titleProduct={productSearched?.title}
+              category={productSearched.category}
+              titleProduct={productSearched.title}
             />
 
-            <div className="mb-6 flex flex-col justify-between gap-10 sm:mb-20 lg:flex-row lg:gap-20">
+            <CardProductID>
               <ImageForCard image={productSearched.image} title={productSearched.title} size="xl" />
 
-              <div className="flex w-full max-w-2xl flex-col gap-4">
+              <CardFooterProductID>
                 <h2 className="text-2xl font-bold sm:text-4xl">{productSearched.title}</h2>
                 <p>{productSearched.description}</p>
                 <div className="mb-2 flex flex-wrap items-center gap-4 sm:mb-8">
@@ -52,18 +54,16 @@ export default function ProductID() {
                 </div>
                 <p className="text-2xl font-bold">{priceProduct}</p>
                 <CardActionsFooter className="w-fit p-0" id={productSearched.id} />
-              </div>
-            </div>
+              </CardFooterProductID>
+            </CardProductID>
 
-            <div className="py-4 sm:pb-20">
-              <OthersProducts
-                title={`Others products on ${productSearched.category}`}
-                products={productsCategoryWithoutCurrent}
-                isLoading={isLoadingProductsCategory}
-              />
-            </div>
+            <OthersProducts
+              title={`Others products on ${productSearched.category}`}
+              products={productsCategoryWithoutCurrent}
+              isLoading={isLoadingProductsCategory}
+            />
 
-            <OthersProducts title={`Others products on storage`} products={othersProducts} />
+            <OthersProducts title="Others products on storage" products={othersProducts} />
           </>
         )}
       </Container>

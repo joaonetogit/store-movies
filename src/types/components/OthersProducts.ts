@@ -1,3 +1,4 @@
+import { IChildrenProps } from '../base';
 import { IProduct } from '../product';
 
 export interface IOthersProductsProps {
@@ -6,9 +7,7 @@ export interface IOthersProductsProps {
   isLoading?: boolean;
 }
 
-export interface IOthersProductsListProps {
-  products: IProduct[] | undefined;
-}
+export interface IOthersProductsListProps extends IChildrenProps {}
 
 export interface IOthersProductsCardProps {
   product: IProduct;
