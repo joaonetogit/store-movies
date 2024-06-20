@@ -14,7 +14,7 @@ export default function useHome() {
 
   useEffect(() => {
     queryClient.prefetchQuery({
-      queryKey: ['products'],
+      queryKey: ['AllProducts'],
       queryFn: FetchAllProducts,
     });
   }, [queryClient]);
