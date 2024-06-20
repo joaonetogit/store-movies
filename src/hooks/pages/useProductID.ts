@@ -39,7 +39,7 @@ export default function useProductID() {
   );
 
   const { data: products } = useQuery({
-    queryKey: ['products'],
+    queryKey: ['AllProducts'],
     queryFn: FetchAllProducts,
   });
 

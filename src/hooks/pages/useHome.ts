@@ -5,7 +5,7 @@ import { useEffect, useMemo } from 'react';
 export default function useHome() {
   const queryClient = useQueryClient();
   const { data: products, isLoading } = useQuery({
-    queryKey: ['products'],
+    queryKey: ['AllProducts'],
     queryFn: FetchAllProducts,
     staleTime: 60000,
   });

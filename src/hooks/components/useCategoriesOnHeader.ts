@@ -8,7 +8,7 @@ import useViewport from '../useViewport';
 
 export default function useHeaderCategories() {
   const { data: products } = useQuery({
-    queryKey: ['products'],
+    queryKey: ['AllProducts'],
     queryFn: FetchAllProducts,
   });
   const { width } = useViewport();
