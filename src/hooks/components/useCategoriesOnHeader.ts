@@ -1,3 +1,5 @@
+import { KeyForQuery } from '@/constants/KeyForQuery';
+import { StaleTimeQuery } from '@/constants/StaleTimeQuery';
 import { FetchAllProducts } from '@/functions/FetchAllProducts';
 import { GetProductsByCategory } from '@/functions/GetProductsByCategory';
 import { queryClient } from '@/functions/QueryClient';
@@ -8,7 +10,7 @@ import useViewport from '../useViewport';
 
 export default function useHeaderCategories() {
   const { data: products } = useQuery({
-    queryKey: ['AllProducts'],
+    queryKey: [KeyForQuery.AllProducts],
     queryFn: FetchAllProducts,
   });
   const { width } = useViewport();
@@ -19,7 +21,7 @@ export default function useHeaderCategories() {
     await queryClient.prefetchQuery({
       queryKey: [categoryToSearch],
       queryFn: () => GetProductsByCategory(categoryToSearch),
-      staleTime: 60000,
+      staleTime: StaleTimeQuery,
     });
   };
 

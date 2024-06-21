@@ -1,3 +1,4 @@
+import { KeyForQuery } from '@/constants/KeyForQuery';
 import { FetchAllProducts } from '@/functions/FetchAllProducts';
 import { GetProduct } from '@/functions/GetProduct';
 import { GetProductsByCategory } from '@/functions/GetProductsByCategory';
@@ -12,7 +13,7 @@ export default function useProductID() {
   const titleProduct = title as string;
 
   const { data: productSearched, isLoading: isLoadingProduct } = useQuery({
-    queryKey: [titleProduct],
+    queryKey: ['productID', titleProduct],
     queryFn: () => GetProduct(titleProduct),
     enabled: !!titleProduct,
   });
@@ -26,11 +27,11 @@ export default function useProductID() {
     priceProduct = ConvertCoin(productSearched.price, 'hasSymbol');
     timeFilm = GetTimeFilm(productSearched.durationFilm);
     idProduct = productSearched.id as string;
-    categoryProduct = productSearched?.category as string;
+    categoryProduct = productSearched.category as string;
   }
 
   const { data: productsCategory, isLoading: isLoadingProductsCategory } = useQuery({
-    queryKey: [categoryProduct],
+    queryKey: ['categoryProduct', categoryProduct, productSearched?.id],
     queryFn: () => GetProductsByCategory(categoryProduct),
     enabled: !!categoryProduct,
   });
@@ -40,7 +41,7 @@ export default function useProductID() {
   );
 
   const { data: allProducts } = useQuery({
-    queryKey: ['AllProducts'],
+    queryKey: [KeyForQuery.AllProducts],
     queryFn: FetchAllProducts,
   });
 

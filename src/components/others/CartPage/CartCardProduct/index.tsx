@@ -3,6 +3,7 @@ import useCardProduct from '@/hooks/components/useCardProduct';
 import { ICartCardProductProps } from '@/types/components/CartCardProduct';
 import CardActionsFooter from '../../CardActionsFooter';
 import ImageForCard from '../../ImageForCard';
+import LinkToDetailsProduct from '../../LinkToDetails';
 import RemoveCardButton from '../RemoveCardButton';
 
 export default function CartCardProduct({ product }: ICartCardProductProps) {
@@ -24,6 +25,7 @@ export default function CartCardProduct({ product }: ICartCardProductProps) {
         </div>
       </CardContent>
       <CardActionsFooter className="pb-8" id={product.id}>
+        <LinkToDetailsProduct title={product.title} />
         <RemoveCardButton id={product.id} />
       </CardActionsFooter>
     </Card>

@@ -1,3 +1,5 @@
+import { KeyForQuery } from '@/constants/KeyForQuery';
+import { StaleTimeQuery } from '@/constants/StaleTimeQuery';
 import { FetchAllProducts } from '@/functions/FetchAllProducts';
 import { ISizeClasses } from '@/types/base';
 import { useQueryClient } from '@tanstack/react-query';
@@ -11,9 +13,9 @@ export default function useLogo() {
 
   const prefetchAllProduct = async () => {
     await queryClient.prefetchQuery({
-      queryKey: ['AllProducts'],
+      queryKey: [KeyForQuery.AllProducts],
       queryFn: FetchAllProducts,
-      staleTime: 60000,
+      staleTime: StaleTimeQuery,
     });
   };
 

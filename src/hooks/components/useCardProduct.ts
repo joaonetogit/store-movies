@@ -9,11 +9,10 @@ export default function useCardProduct(id: string) {
   const priceFormatted = product ? ConvertCoin(product.price, 'hasSymbol') : null;
 
   let subtotal = null;
-  if (product) {
-    const quantityProduct = Number(findQtyById(id));
-    if (quantityProduct) {
-      subtotal = ConvertCoin(product.price * quantityProduct, 'hasSymbol');
-    }
+  const quantityProduct = Number(findQtyById(id));
+
+  if (product && quantityProduct) {
+    subtotal = ConvertCoin(product.price * quantityProduct, 'hasSymbol');
   }
 
   return {
