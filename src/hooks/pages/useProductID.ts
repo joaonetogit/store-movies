@@ -2,6 +2,7 @@ import { KeyForQuery } from '@/constants/KeyForQuery';
 import { FetchAllProducts } from '@/functions/FetchAllProducts';
 import { GetProduct } from '@/functions/GetProduct';
 import { GetProductsByCategory } from '@/functions/GetProductsByCategory';
+import { IProduct } from '@/types/product';
 import { GetTimeFilm } from '@/utils/CalculateTimeFilm';
 import ConvertCoin from '@/utils/ConvertCoin';
 import { GenerateSlug } from '@/utils/GenerateSlug';
@@ -11,6 +12,11 @@ import { useParams } from 'react-router-dom';
 export default function useProductID() {
   const { title } = useParams();
   const titleProduct = title as string;
+
+  const { data: allProducts } = useQuery({
+    queryKey: [KeyForQuery.AllProducts],
+    queryFn: FetchAllProducts,
+  });
 
   const { data: productSearched, isLoading: isLoadingProduct } = useQuery({
     queryKey: ['productID', titleProduct],
@@ -36,18 +42,30 @@ export default function useProductID() {
     enabled: !!categoryProduct,
   });
 
-  const productsCategoryWithoutCurrent = productsCategory?.filter(
-    (product) => product.id !== idProduct,
-  );
+  function filterProductsByCategoryExcludingCurrent(
+    products: IProduct[],
+    currentProductId: string,
+    desiredCategory: string,
+  ): IProduct[] {
+    return products.filter(
+      (product) => product.category === desiredCategory && product.id !== currentProductId,
+    );
+  }
 
-  const { data: allProducts } = useQuery({
-    queryKey: [KeyForQuery.AllProducts],
-    queryFn: FetchAllProducts,
-  });
+  const productsCategoryWithoutCurrent =
+    productsCategory &&
+    productSearched &&
+    filterProductsByCategoryExcludingCurrent(
+      productsCategory,
+      productSearched.id as string,
+      categoryProduct,
+    );
 
-  const othersProducts = allProducts?.filter(
-    (product) => !productsCategoryWithoutCurrent?.find((item) => item.id === product.id),
-  );
+  function othersProductsFilter(allProducts: IProduct[], currentProductId: string): IProduct[] {
+    return allProducts.filter((product) => product.id !== currentProductId);
+  }
+
+  const othersProducts = allProducts && idProduct && othersProductsFilter(allProducts, idProduct);
 
   const categoryNormalize = GenerateSlug(categoryProduct);
 
