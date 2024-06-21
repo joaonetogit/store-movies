@@ -1,7 +1,7 @@
 import api from '@/api/api';
 import { IProduct } from '@/types/product';
 
-export async function FetchAllProducts(): Promise<IProduct[]> {
+export async function FetchAllProducts(): Promise<IProduct[] | null> {
   const URLToGetProducts = '/products';
 
   try {
@@ -14,6 +14,6 @@ export async function FetchAllProducts(): Promise<IProduct[]> {
     return products;
   } catch (error) {
     console.error('There was an error when searching for products:', error);
-    return [];
+    return null;
   }
 }

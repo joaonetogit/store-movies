@@ -24,17 +24,10 @@ export default function useProductID() {
     enabled: !!titleProduct,
   });
 
-  let priceProduct = null;
-  let timeFilm = null;
-  let idProduct = null;
-  let categoryProduct = '';
-
-  if (productSearched) {
-    priceProduct = ConvertCoin(productSearched.price, 'hasSymbol');
-    timeFilm = GetTimeFilm(productSearched.durationFilm);
-    idProduct = productSearched.id as string;
-    categoryProduct = productSearched.category as string;
-  }
+  const priceProduct = productSearched ? ConvertCoin(productSearched.price, 'hasSymbol') : null;
+  const timeFilm = productSearched ? GetTimeFilm(productSearched.durationFilm) : null;
+  const idProduct = productSearched ? (productSearched.id as string) : '';
+  const categoryProduct = productSearched ? (productSearched.category as string) : '';
 
   const { data: productsCategory, isLoading: isLoadingProductsCategory } = useQuery({
     queryKey: ['categoryProduct', categoryProduct, productSearched?.id],
@@ -43,26 +36,26 @@ export default function useProductID() {
   });
 
   function filterProductsByCategoryExcludingCurrent(
-    products: IProduct[],
-    currentProductId: string,
-    desiredCategory: string,
+    products: IProduct[] = [],
+    currentProductId: string = '',
+    desiredCategory: string = ''
   ): IProduct[] {
     return products.filter(
-      (product) => product.category === desiredCategory && product.id !== currentProductId,
+      (product) => product.category === desiredCategory && product.id !== currentProductId
     );
   }
 
   const productsCategoryWithoutCurrent = filterProductsByCategoryExcludingCurrent(
-    productsCategory as IProduct[],
-    productSearched?.id as string,
-    categoryProduct,
+    productsCategory ?? [],
+    productSearched?.id ?? '',
+    categoryProduct ?? '',
   );
 
-  function othersProductsFilter(allProducts: IProduct[], currentProductId: string): IProduct[] {
+  function othersProductsFilter(allProducts: IProduct[] = [], currentProductId: string = ''): IProduct[] {
     return allProducts.filter((product) => product.id !== currentProductId);
   }
 
-  const othersProducts = othersProductsFilter(allProducts as IProduct[], idProduct as string);
+  const othersProducts = othersProductsFilter(allProducts ?? [], idProduct ?? '');
 
   const categoryNormalize = GenerateSlug(categoryProduct);
 
