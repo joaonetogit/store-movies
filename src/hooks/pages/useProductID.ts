@@ -52,20 +52,17 @@ export default function useProductID() {
     );
   }
 
-  const productsCategoryWithoutCurrent =
-    productsCategory &&
-    productSearched &&
-    filterProductsByCategoryExcludingCurrent(
-      productsCategory,
-      productSearched.id as string,
-      categoryProduct,
-    );
+  const productsCategoryWithoutCurrent = filterProductsByCategoryExcludingCurrent(
+    productsCategory as IProduct[],
+    productSearched?.id as string,
+    categoryProduct,
+  );
 
   function othersProductsFilter(allProducts: IProduct[], currentProductId: string): IProduct[] {
     return allProducts.filter((product) => product.id !== currentProductId);
   }
 
-  const othersProducts = allProducts && idProduct && othersProductsFilter(allProducts, idProduct);
+  const othersProducts = othersProductsFilter(allProducts as IProduct[], idProduct as string);
 
   const categoryNormalize = GenerateSlug(categoryProduct);
 
