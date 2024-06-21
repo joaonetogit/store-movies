@@ -24,9 +24,8 @@ export default function useImageForCard(image: string) {
   }, [image, setImageSrc]);
 
   const sizeClasses: ISizeClasses = {
-    sm: 'max-w-xs max-h-20',
-    lg: 'max-w-lg max-h-48',
-    xl: 'max-w-full sm:max-w-2xl max-h-64 sm:max-h-[600px]',
+    lg: 'max-w-lg max-h-48 w-cardImageNormal h-cardImageNormal',
+    xl: 'max-w-full sm:max-w-2xl max-h-64 sm:max-h-[600px] w-cardImageLarge h-cardImageLarge',
   } as const;
 
   return { loadingImage, handleImageLoad, handleImageError, imageSrc, sizeClasses };

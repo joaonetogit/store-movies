@@ -27,7 +27,13 @@ module.exports = {
       minHeight: {
         main: 'calc(100dvh - 92px)',
       },
+      width: {
+        cardImageLarge: '467px',
+        cardImageNormal: '192px',
+      },
       height: {
+        cardImageLarge: '600px',
+        cardImageNormal: '149px',
         main: 'calc(100dvh - 92px)',
       },
       colors: {
