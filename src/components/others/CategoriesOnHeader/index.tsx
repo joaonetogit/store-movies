@@ -14,7 +14,7 @@ export default function CategoriesOnHeader() {
 
   const RenderDropdownMenu = () => (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild aria-label='Dropdown Menu Categories'>
         <Menu />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">

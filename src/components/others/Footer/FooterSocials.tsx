@@ -7,7 +7,7 @@ export default function FooterSocials() {
       <p>Follow me on:</p>
       <div className="flex items-center justify-center gap-4">
         {DataFooterSocials.map((social, index) => (
-          <FooterSocialsLink key={index} link={social.link}>
+          <FooterSocialsLink key={index} link={social.link} aria-label={social.name}>
             {social.icon}
           </FooterSocialsLink>
         ))}
