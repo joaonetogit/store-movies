@@ -15,6 +15,7 @@ export default function ImageForCard({ image, title, size = 'lg' }: IImageForCar
           alt={`Image - ${title}`}
           onLoad={handleImageLoad}
           onError={handleImageError}
+          loading='lazy'
         />
         {loadingImage && (
           <div className="flex h-full items-center">
