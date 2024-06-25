@@ -9,16 +9,16 @@ import { ScrollRestoration } from 'react-router-dom';
 
 export default function LayoutApp({ children, headerHasOnlyLogo }: ILayoutAppProps) {
   return (
-    <>
+    <div className="flex min-h-svh flex-col justify-between">
       <Header onlyHeaderLogo={headerHasOnlyLogo} />
       <SafeAreaView>
-        <main className="min-h-main pt-10 sm:pt-16">{children}</main>
+        <main className="pt-10">{children}</main>
       </SafeAreaView>
       <Footer />
       <Toaster />
       <ModeToggle />
       <ScrollToTop />
       <ScrollRestoration />
-    </>
+    </div>
   );
 }

@@ -6,21 +6,26 @@ const placeholderImage = 'https://placehold.co/500x600';
 
 export default function useImageForCard(image: string) {
   const [loadingImage, setLoadingImage] = useState<boolean>(true);
-  const [imageSrc, setImageSrc] = useState<string>('');
+  const [imageSrc, setImageSrc] = useState<string>(image);
+  const [errorHandled, setErrorHandled] = useState<boolean>(false);
 
-  async function handleImageLoad() {
+  const handleImageLoad = async () => {
     await Sleep(500);
     setLoadingImage(false);
-  }
+  };
 
-  async function handleImageError() {
-    await Sleep(500);
-    setImageSrc(placeholderImage);
-    setLoadingImage(false);
-  }
+  const handleImageError = async () => {
+    if (!errorHandled) {
+      setErrorHandled(true);
+      await Sleep(500);
+      setImageSrc(placeholderImage);
+      setLoadingImage(false);
+    }
+  };
 
   useEffect(() => {
     setImageSrc(image);
+    setErrorHandled(false);
   }, [image, setImageSrc]);
 
   const sizeClasses: ISizeClasses = {

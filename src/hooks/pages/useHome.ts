@@ -2,9 +2,10 @@ import { KeyForQuery } from '@/constants/KeyForQuery';
 import { StaleTimeQuery } from '@/constants/StaleTimeQuery';
 import { FetchAllProducts } from '@/functions/FetchAllProducts';
 import { OrderTypes } from '@/types/components/SortButton';
+import Sleep from '@/utils/Sleep';
 import { sortByName, sortByNewest, sortByPrice } from '@/utils/SortProducts';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function useHome() {
   const queryClient = useQueryClient();
@@ -15,25 +16,8 @@ export default function useHome() {
   });
 
   const [sortOrder, setSortOrder] = useState<OrderTypes>('Name');
-
-  const sortedProducts = useMemo(() => {
-    if (!products) return null;
-
-    switch (sortOrder) {
-      case 'Name':
-        return sortByName(products);
-      case 'Price':
-        return sortByPrice(products);
-      case 'Newest':
-        return sortByNewest(products);
-      default:
-        return products;
-    }
-  }, [products, sortOrder]);
-
-  const changeSortOrder = (order: OrderTypes) => {
-    setSortOrder(order);
-  };
+  const [sortedProducts, setSortedProducts] = useState(products);
+  const [loadingOrder, setLoadingOrder] = useState(false);
 
   useEffect(() => {
     queryClient.prefetchQuery({
@@ -42,5 +26,37 @@ export default function useHome() {
     });
   }, [queryClient]);
 
-  return { products: sortedProducts, isLoading, changeSortOrder, sortOrder };
+  useEffect(() => {
+    const sortProducts = async () => {
+      if (!products) return;
+      setLoadingOrder(true);
+
+      let sorted;
+      switch (sortOrder) {
+        case 'Name':
+          sorted = sortByName(products);
+          break;
+        case 'Price':
+          sorted = sortByPrice(products);
+          break;
+        case 'Newest':
+          sorted = sortByNewest(products);
+          break;
+        default:
+          sorted = products;
+      }
+
+      await Sleep(500);
+      setSortedProducts(sorted);
+      setLoadingOrder(false);
+    };
+
+    sortProducts();
+  }, [products, sortOrder]);
+
+  const changeSortOrder = (order: OrderTypes) => {
+    setSortOrder(order);
+  };
+
+  return { products: sortedProducts, isLoading, changeSortOrder, sortOrder, loadingOrder };
 }

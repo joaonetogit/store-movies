@@ -18,7 +18,7 @@ export default function ImageForCard({ image, title, size = 'lg' }: IImageForCar
           loading="lazy"
         />
         {loadingImage && (
-          <div className="flex h-full items-center">
+          <div className="flex h-full items-center justify-center">
             <Loading />
           </div>
         )}

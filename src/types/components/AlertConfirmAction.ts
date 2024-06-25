@@ -1,5 +1,5 @@
 export interface IAlertConfirmActionProps {
   onClick: () => void;
-  labelButtonAction: string;
+  labelButtonAction: React.ReactNode;
   description: string;
 }

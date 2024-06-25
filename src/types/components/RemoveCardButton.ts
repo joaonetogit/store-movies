@@ -1,3 +1,5 @@
 import { IIdProps } from '../base';
 
-export interface IRemoveCardButtonProps extends IIdProps {}
+export interface IRemoveCardButtonProps extends IIdProps {
+  children: React.ReactNode;
+}
