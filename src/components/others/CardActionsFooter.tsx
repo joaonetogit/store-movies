@@ -18,16 +18,21 @@ export default function CardActionsFooter({ className, id, children }: ICardActi
     <CardFooter className={`flex flex-col items-center justify-center gap-4 pb-2 ${className}`}>
       {hasProductInCart ? (
         <div className="flex items-center justify-center gap-4">
-          <Button variant="outline" onClick={onIncreaseQuantity}>
-            <Plus size={16} />
+          <Button variant="outline" aria-label="Increase quantity" onClick={onDecreaseQuantity}>
+            <Minus size={16} />
           </Button>
           <p>{quantityProductInCart}</p>
-          <Button variant="outline" onClick={onDecreaseQuantity}>
-            <Minus size={16} />
+          <Button variant="outline" aria-label="Decrease quantity" onClick={onIncreaseQuantity}>
+            <Plus size={16} />
           </Button>
         </div>
       ) : (
-        <Button variant="default" onClick={onAddToCart} disabled={addToCartLoading}>
+        <Button
+          aria-label="Add product to cart"
+          variant="default"
+          onClick={onAddToCart}
+          disabled={addToCartLoading}
+        >
           {addToCartLoading ? 'Adding to cart...' : 'Add to Cart'}
         </Button>
       )}
