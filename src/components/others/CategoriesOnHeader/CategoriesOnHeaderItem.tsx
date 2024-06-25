@@ -9,7 +9,7 @@ export default function CategoriesOnHeaderItem({ category }: ICategoriesOnHeader
   return (
     <Link
       to={`/product/category/${GenerateSlug(category)}`}
-      className="px-2 py-1 text-sm text-foreground transition-all hover:text-opacity-5 hover:underline"
+      className="flex w-full items-center px-2 py-1 text-left text-sm text-foreground transition-all hover:text-opacity-5 hover:underline sm:justify-center sm:text-center"
       onMouseEnter={() => prefetchCategory(category)}
       onFocus={() => prefetchCategory(category)}
     >

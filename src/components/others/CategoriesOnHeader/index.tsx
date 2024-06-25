@@ -14,10 +14,10 @@ export default function CategoriesOnHeader() {
 
   const RenderDropdownMenu = () => (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild aria-label='Dropdown Menu Categories'>
+      <DropdownMenuTrigger asChild aria-label="Dropdown Menu Categories">
         <Menu />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
+      <DropdownMenuContent align={isTablet ? 'start' : 'center'}>
         {categories.map((category) => (
           <DropdownMenuItem key={category}>
             <CategoriesOnHeaderItem category={category} />

@@ -14,7 +14,7 @@ export default function useHeaderCategories() {
     queryFn: FetchAllProducts,
   });
   const { width } = useViewport();
-  const isTablet = width > 640;
+  const isTablet = width > 820;
   const categories = useMemo(() => (products ? GetUniqueCategories(products) : []), [products]);
 
   const prefetchCategory = async (categoryToSearch: string) => {

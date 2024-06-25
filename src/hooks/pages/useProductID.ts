@@ -38,10 +38,10 @@ export default function useProductID() {
   function filterProductsByCategoryExcludingCurrent(
     products: IProduct[] = [],
     currentProductId: string = '',
-    desiredCategory: string = ''
+    desiredCategory: string = '',
   ): IProduct[] {
     return products.filter(
-      (product) => product.category === desiredCategory && product.id !== currentProductId
+      (product) => product.category === desiredCategory && product.id !== currentProductId,
     );
   }
 
@@ -51,7 +51,10 @@ export default function useProductID() {
     categoryProduct ?? '',
   );
 
-  function othersProductsFilter(allProducts: IProduct[] = [], currentProductId: string = ''): IProduct[] {
+  function othersProductsFilter(
+    allProducts: IProduct[] = [],
+    currentProductId: string = '',
+  ): IProduct[] {
     return allProducts.filter((product) => product.id !== currentProductId);
   }
 
