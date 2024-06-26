@@ -14,7 +14,11 @@ export default function CardProduct({ product }: ICardProductProps) {
       <CardContent className="flex flex-col items-center justify-center pb-4 pt-6">
         <ImageForCard image={product.image} title={product.title} />
 
-        {isNewProduct && <BadgeForNewProduct />}
+        {isNewProduct && (
+          <div className="mt-2">
+            <BadgeForNewProduct />
+          </div>
+        )}
 
         <h2 className="mb-2 mt-4 text-center text-lg font-bold sm:text-xl">{product.title}</h2>
         <p>{priceFormatted}</p>

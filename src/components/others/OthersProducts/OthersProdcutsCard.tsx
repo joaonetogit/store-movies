@@ -13,7 +13,11 @@ export default function OthersProdcutsCard({ product }: IOthersProductsCardProps
     <div className="flex h-full flex-col items-center justify-center">
       <ImageForCard image={product.image} title={product.title} />
 
-      {isNewProduct && <BadgeForNewProduct />}
+      {isNewProduct && (
+        <div className="mt-2">
+          <BadgeForNewProduct />
+        </div>
+      )}
 
       <h2 className="mb-2 mt-4 text-center text-2xl">{product.title}</h2>
       <p className="mb-4">{priceFormatted}</p>
