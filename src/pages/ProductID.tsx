@@ -1,3 +1,4 @@
+import BadgeForNewProduct from '@/components/others/BadgeForNewProduct';
 import BreadcrumbCustom from '@/components/others/Breadcrumb/BreadcrumbProductID';
 import CardActionsFooter from '@/components/others/CardActionsFooter';
 import Container from '@/components/others/Container';
@@ -22,6 +23,7 @@ export default function ProductID() {
     othersProducts,
     URLToCategory,
     attributesToRender,
+    isNewProduct,
   } = useProductID();
 
   return (
@@ -44,7 +46,11 @@ export default function ProductID() {
                 >
                   {productSearched.category}
                 </Link>
-                <h2 className="text-2xl font-bold sm:text-4xl">{productSearched.title}</h2>
+                <div className="inline-flex items-center">
+                  <h2 className="text-2xl font-bold sm:text-4xl text-balance">
+                    {productSearched.title} {isNewProduct && <BadgeForNewProduct />}
+                  </h2>
+                </div>
                 <p>{productSearched.description}</p>
 
                 <Divider />

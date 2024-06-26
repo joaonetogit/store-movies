@@ -1,6 +1,7 @@
 import { FindProductById } from '@/functions/QueryGetProductByID';
 import useCartStore from '@/store/useCartStore';
 import ConvertCoin from '@/utils/ConvertCoin';
+import { IsNewProduct } from '@/utils/IsNewProduct';
 import { useMemo } from 'react';
 
 export default function useCardProduct(id: string) {
@@ -15,8 +16,15 @@ export default function useCardProduct(id: string) {
     subtotal = ConvertCoin(product.price * quantityProduct, 'hasSymbol');
   }
 
+  const isNewProduct = useMemo(() => {
+    if (!product) return false;
+
+    return IsNewProduct(product);
+  }, [product]);
+
   return {
     priceFormatted,
     subtotal,
+    isNewProduct
   };
 }

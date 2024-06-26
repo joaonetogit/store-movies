@@ -1,6 +1,6 @@
 export interface IProduct {
   id: string;
-  new: boolean;
+  createdAt: string;
   title: string;
   price: number;
   image: string;

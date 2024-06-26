@@ -6,9 +6,10 @@ import { IProduct } from '@/types/product';
 import { GetTimeFilm } from '@/utils/CalculateTimeFilm';
 import ConvertCoin from '@/utils/ConvertCoin';
 import { GenerateSlug } from '@/utils/GenerateSlug';
+import { IsNewProduct } from '@/utils/IsNewProduct';
 import { useQuery } from '@tanstack/react-query';
 import { Clock9, LucideProps, VenetianMask } from 'lucide-react';
-import { ForwardRefExoticComponent, RefAttributes } from 'react';
+import { ForwardRefExoticComponent, RefAttributes, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface IAtributesToRender {
@@ -80,6 +81,12 @@ export default function useProductID() {
     { icon: VenetianMask, text: `${directorProduct} as director` },
   ];
 
+  const isNewProduct = useMemo(() => {
+    if (!productSearched) return false;
+
+    return IsNewProduct(productSearched);
+  }, [productSearched]);
+  
   return {
     categoryNormalize,
     productSearched,
@@ -91,5 +98,6 @@ export default function useProductID() {
     othersProducts,
     URLToCategory,
     attributesToRender,
+    isNewProduct
   };
 }

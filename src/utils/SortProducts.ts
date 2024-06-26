@@ -13,7 +13,6 @@ export const sortByPrice = (products: IProduct[]) => {
 
 export const sortByNewest = (products: IProduct[]) => {
   return [...products].sort((a, b) => {
-    if (a.new === b.new) return 0;
-    return a.new ? -1 : 1;
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   });
 };
