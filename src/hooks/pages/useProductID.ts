@@ -86,7 +86,7 @@ export default function useProductID() {
 
     return IsNewProduct(productSearched);
   }, [productSearched]);
-  
+
   return {
     categoryNormalize,
     productSearched,
@@ -98,6 +98,6 @@ export default function useProductID() {
     othersProducts,
     URLToCategory,
     attributesToRender,
-    isNewProduct
+    isNewProduct,
   };
 }
