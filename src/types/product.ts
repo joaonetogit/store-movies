@@ -9,6 +9,7 @@ export interface IProduct {
   description: string;
   durationFilm: number;
   category: string;
+  director: string;
 }
 
 export interface IProductOnCart extends IProduct {
