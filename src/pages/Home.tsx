@@ -6,11 +6,9 @@ import SortButton from '@/components/others/SortButton';
 import SortButtonList from '@/components/others/SortButton/SortButtonList';
 import useHome from '@/hooks/pages/useHome';
 import LayoutApp from '@/layouts/LayoutApp';
-import { sortOptions } from '@/utils/SortProducts';
 
 export default function Home() {
-  const { products, isLoading, changeSortOrder, sortOrder, loadingOrder } = useHome();
-  const isLoad = loadingOrder || isLoading;
+  const { products, isLoading, changeSortOrder, sortOrder, sortOptions } = useHome();
 
   return (
     <LayoutApp>
@@ -31,8 +29,8 @@ export default function Home() {
             ))}
           </SortButtonList>
         </div>
-        {isLoad && <Loading />}
-        {!isLoad && products && (
+        {isLoading && <Loading />}
+        {!isLoading && products && (
           <GridShowItems>
             {products.map((item, key) => (
               <CardProduct key={key} product={item} />

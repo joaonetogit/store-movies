@@ -1,20 +1,21 @@
 import api from '@/api/api';
 import { IProduct } from '@/types/product';
-import { GetStoredToken } from '@/utils/Token';
-import GetToken from './GetToken';
 
-export async function GetProductsByCategory(category: string): Promise<IProduct[]> {
+export async function GetProductsByCategory(category: string, token: string): Promise<IProduct[]> {
   const URLToGetProducts = `/products/category/${category}`;
-  let token = GetStoredToken();
+
+  if (!token) {
+    console.error('Token is not stored, trying to get a new one');
+  }
 
   try {
-    if (!token) {
-      token = await GetToken();
-    }
-
     const response = await api({
       method: 'GET',
       url: URLToGetProducts,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const product: IProduct[] = response.data.products;

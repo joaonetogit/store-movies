@@ -1,7 +1,4 @@
-import { OrderTypes } from '@/types/components/SortButton';
 import { IProduct } from '@/types/product';
-
-export const sortOptions: OrderTypes[] = ['Name', 'Price', 'Newest'];
 
 export const sortByName = (products: IProduct[]) => {
   return [...products].sort((a, b) => a.title.localeCompare(b.title));

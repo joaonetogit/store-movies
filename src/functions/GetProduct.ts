@@ -1,20 +1,21 @@
 import api from '@/api/api';
 import { IProduct } from '@/types/product';
-import { GetStoredToken } from '@/utils/Token';
-import GetToken from './GetToken';
 
-export async function GetProduct(slug: string): Promise<IProduct | null> {
+export async function GetProduct(slug: string, token: string): Promise<IProduct | null> {
   const URLToGetProduct = `/product/${slug}`;
-  let token = GetStoredToken();
+
+  if (!token) {
+    console.error('Token is not stored, trying to get a new one');
+  }
 
   try {
-    if (!token) {
-      token = await GetToken();
-    }
-
     const response = await api({
       method: 'GET',
       url: URLToGetProduct,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (response && response.data) {

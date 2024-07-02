@@ -1,6 +1,10 @@
 import { ComponentProps } from 'react';
 
-export type OrderTypes = 'Price' | 'Name' | 'Newest';
+export enum OrderTypes {
+  Name = 'Name',
+  Price = 'Price',
+  Newest = 'Newest',
+}
 
 export interface ISortButtonProps extends ComponentProps<'button'> {
   label: string;
