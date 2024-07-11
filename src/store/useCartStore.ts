@@ -1,5 +1,5 @@
 import { ICartStore } from '@/types/store/useCartStore';
-import { CalculateTotalPrice } from '@/utils/CalculateTotal';
+import { calculateTotalPrice } from '@/utils/calculateTotal';
 import { toast } from 'sonner';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -60,7 +60,7 @@ const useCartStore = create(
         const itemExists = get().cartItems.find((cartItem) => cartItem.id === productId);
         return itemExists ? itemExists.quantity : 0;
       },
-      calculateTotal: (type) => CalculateTotalPrice(type, get().cartItems),
+      calculateTotal: (type) => calculateTotalPrice(type, get().cartItems),
       cleanCart: () => {
         set({ cartItems: [] });
       },

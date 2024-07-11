@@ -1,16 +1,17 @@
-import BadgeForNewProduct from '@/components/others/BadgeForNewProduct';
-import BreadcrumbCustom from '@/components/others/Breadcrumb/BreadcrumbProductID';
-import CardActionsFooter from '@/components/others/CardActionsFooter';
-import Container from '@/components/others/Container';
-import Divider from '@/components/others/Divider';
-import ImageForCard from '@/components/others/ImageForCard';
-import Loading from '@/components/others/Loading';
-import OthersProducts from '@/components/others/OthersProducts';
-import AttributeContent from '@/components/others/ProductID/AttributeContent';
-import CardContentProductID from '@/components/others/ProductID/CardContentProductID';
-import CardProductID from '@/components/others/ProductID/CardProductID';
+import BadgeForNewProduct from '@/components/custom/BadgeForNewProduct';
+import BreadcrumbCustom from '@/components/custom/Breadcrumb/BreadcrumbProductID';
+import CardActionsFooter from '@/components/custom/CardActionsFooter';
+import Container from '@/components/custom/Container';
+import Divider from '@/components/custom/Divider';
+import ImageForCard from '@/components/custom/ImageForCard';
+import Loading from '@/components/custom/Loading';
+import OthersProducts from '@/components/custom/OthersProducts';
+import AttributeContent from '@/components/custom/ProductID/AttributeContent';
+import CardContentProductID from '@/components/custom/ProductID/CardContentProductID';
+import CardProductID from '@/components/custom/ProductID/CardProductID';
 import useProductID from '@/hooks/pages/useProductID';
 import LayoutApp from '@/layouts/LayoutApp';
+import { isNewProduct } from '@/utils/isNewProduct';
 import { Link } from 'react-router-dom';
 
 export default function ProductID() {
@@ -23,7 +24,6 @@ export default function ProductID() {
     othersProducts,
     URLToCategory,
     attributesToRender,
-    isNewProduct,
   } = useProductID();
 
   return (
@@ -47,8 +47,9 @@ export default function ProductID() {
                   {productSearched.category}
                 </Link>
                 <div className="inline-flex items-center">
-                  <h2 className="text-2xl font-bold sm:text-4xl text-balance">
-                    {productSearched.title} {isNewProduct && <BadgeForNewProduct />}
+                  <h2 className="text-balance text-2xl font-bold sm:text-4xl">
+                    {productSearched.title}{' '}
+                    {isNewProduct(productSearched) && <BadgeForNewProduct />}
                   </h2>
                 </div>
                 <p>{productSearched.description}</p>

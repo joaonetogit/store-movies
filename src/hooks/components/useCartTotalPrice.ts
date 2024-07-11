@@ -1,5 +1,5 @@
 import useCartStore from '@/store/useCartStore';
-import ConvertCoin from '@/utils/ConvertCoin';
+import convertCoin from '@/utils/convertCoin';
 import { useMemo } from 'react';
 
 export default function useCartTotalPrice() {
@@ -7,7 +7,7 @@ export default function useCartTotalPrice() {
 
   const totalCartWithSymbol = useMemo(() => calculateTotal('formatted'), [calculateTotal]);
   const totalCartNoSymbol = useMemo(() => calculateTotal('number'), [calculateTotal]);
-  const valueOfShipping = useMemo(() => ConvertCoin(10, 'hasSymbol'), []);
+  const valueOfShipping = useMemo(() => convertCoin(10, 'hasSymbol'), []);
   const valueToBeShippingFree = 299.99;
   const valueDisplayShippingFree = `$${valueToBeShippingFree}`;
   const whenShippingIsFree = useMemo(

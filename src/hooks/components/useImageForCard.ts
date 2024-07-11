@@ -1,6 +1,6 @@
 import { ISizeClasses } from '@/types/base';
-import Sleep from '@/utils/Sleep';
-import { useEffect, useState } from 'react';
+import sleep from '@/utils/sleep';
+import { useCallback, useEffect, useState } from 'react';
 
 const placeholderImage = 'https://placehold.co/500x600';
 
@@ -9,19 +9,19 @@ export default function useImageForCard(image: string) {
   const [imageSrc, setImageSrc] = useState<string>(image);
   const [errorHandled, setErrorHandled] = useState<boolean>(false);
 
-  const handleImageLoad = async () => {
-    await Sleep(500);
+  const handleImageLoad = useCallback(async () => {
+    await sleep(500);
     setLoadingImage(false);
-  };
+  }, []);
 
-  const handleImageError = async () => {
+  const handleImageError = useCallback(async () => {
     if (!errorHandled) {
       setErrorHandled(true);
-      await Sleep(500);
+      await sleep(500);
       setImageSrc(placeholderImage);
       setLoadingImage(false);
     }
-  };
+  }, [errorHandled]);
 
   useEffect(() => {
     setImageSrc(image);

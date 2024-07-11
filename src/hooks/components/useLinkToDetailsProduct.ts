@@ -1,10 +1,10 @@
 import { StaleTimeQuery } from '@/constants/StaleTimeQuery';
-import { GetProduct } from '@/functions/GetProduct';
-import { GenerateSlug } from '@/utils/GenerateSlug';
+import { GetProduct } from '@/functions/getProduct';
+import { generateSlug } from '@/utils/generateSlug';
 import { useQueryClient } from '@tanstack/react-query';
 
 export default function useLinkToDetailsProduct(title: string) {
-  const slug = GenerateSlug(title);
+  const slug = generateSlug(title);
   const queryClient = useQueryClient();
 
   const prefetchProduct = async () => {

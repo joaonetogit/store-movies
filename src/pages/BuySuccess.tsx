@@ -1,4 +1,4 @@
-import Container from '@/components/others/Container';
+import Container from '@/components/custom/Container';
 import LayoutApp from '@/layouts/LayoutApp';
 
 export default function BuySuccess() {

@@ -1,15 +1,14 @@
 import { KeyForQuery } from '@/constants/KeyForQuery';
-import { FetchAllProducts } from '@/functions/FetchAllProducts';
-import { GetProduct } from '@/functions/GetProduct';
-import { GetProductsByCategory } from '@/functions/GetProductsByCategory';
+import { FetchAllProducts } from '@/functions/fetchAllProducts';
+import { GetProduct } from '@/functions/getProduct';
+import { GetProductsByCategory } from '@/functions/getProductsByCategory';
 import { IProduct } from '@/types/product';
-import { GetTimeFilm } from '@/utils/CalculateTimeFilm';
-import ConvertCoin from '@/utils/ConvertCoin';
-import { GenerateSlug } from '@/utils/GenerateSlug';
-import { IsNewProduct } from '@/utils/IsNewProduct';
+import { getTimeFilm } from '@/utils/calculateTimeFilm';
+import convertCoin from '@/utils/convertCoin';
+import { generateSlug } from '@/utils/generateSlug';
 import { useQuery } from '@tanstack/react-query';
 import { Clock9, LucideProps, VenetianMask } from 'lucide-react';
-import { ForwardRefExoticComponent, RefAttributes, useMemo } from 'react';
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { useParams } from 'react-router-dom';
 
 interface IAtributesToRender {
@@ -32,8 +31,8 @@ export default function useProductID() {
     enabled: !!titleProduct,
   });
 
-  const priceProduct = productSearched ? ConvertCoin(productSearched.price, 'hasSymbol') : null;
-  const timeFilm = productSearched ? GetTimeFilm(productSearched.durationFilm) : null;
+  const priceProduct = productSearched ? convertCoin(productSearched.price, 'hasSymbol') : null;
+  const timeFilm = productSearched ? getTimeFilm(productSearched.durationFilm) : null;
   const idProduct = productSearched ? (productSearched.id as string) : '';
   const directorProduct = productSearched ? (productSearched.director as string) : '';
   const categoryProduct = productSearched ? (productSearched.category as string) : '';
@@ -72,7 +71,7 @@ export default function useProductID() {
 
   const othersProducts = othersProductsFilter(allProducts ?? [], categoryProduct, idProduct ?? '');
 
-  const categoryNormalize = GenerateSlug(categoryProduct);
+  const categoryNormalize = generateSlug(categoryProduct);
 
   const URLToCategory = `/product/category/${categoryNormalize}`;
 
@@ -80,12 +79,6 @@ export default function useProductID() {
     { icon: Clock9, text: timeFilm },
     { icon: VenetianMask, text: `${directorProduct} as director` },
   ];
-
-  const isNewProduct = useMemo(() => {
-    if (!productSearched) return false;
-
-    return IsNewProduct(productSearched);
-  }, [productSearched]);
 
   return {
     categoryNormalize,
@@ -98,6 +91,5 @@ export default function useProductID() {
     othersProducts,
     URLToCategory,
     attributesToRender,
-    isNewProduct,
   };
 }

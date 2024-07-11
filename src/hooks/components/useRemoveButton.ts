@@ -1,4 +1,4 @@
-import { FindProductById } from '@/functions/QueryGetProductByID';
+import { FindProductById } from '@/functions/queryGetProductByID';
 import useCartStore from '@/store/useCartStore';
 import { useCallback } from 'react';
 

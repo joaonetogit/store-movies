@@ -1,9 +1,9 @@
-import CardProduct from '@/components/others/CardProduct';
-import Container from '@/components/others/Container';
-import GridShowItems from '@/components/others/GridShowItems';
-import Loading from '@/components/others/Loading';
-import SortButton from '@/components/others/SortButton';
-import SortButtonList from '@/components/others/SortButton/SortButtonList';
+import CardProduct from '@/components/custom/CardProduct';
+import Container from '@/components/custom/Container';
+import GridShowItems from '@/components/custom/GridShowItems';
+import Loading from '@/components/custom/Loading';
+import SortButton from '@/components/custom/SortButton';
+import SortButtonList from '@/components/custom/SortButton/SortButtonList';
 import useHome from '@/hooks/pages/useHome';
 import LayoutApp from '@/layouts/LayoutApp';
 

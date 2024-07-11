@@ -1,8 +1,8 @@
-import BreadcrumbCustom from '@/components/others/Breadcrumb/BreadcrumbProductID';
-import CardProduct from '@/components/others/CardProduct';
-import Container from '@/components/others/Container';
-import GridShowItems from '@/components/others/GridShowItems';
-import Loading from '@/components/others/Loading';
+import BreadcrumbCustom from '@/components/custom/Breadcrumb/BreadcrumbProductID';
+import CardProduct from '@/components/custom/CardProduct';
+import Container from '@/components/custom/Container';
+import GridShowItems from '@/components/custom/GridShowItems';
+import Loading from '@/components/custom/Loading';
 import useCategory from '@/hooks/pages/useCategory';
 import LayoutApp from '@/layouts/LayoutApp';
 

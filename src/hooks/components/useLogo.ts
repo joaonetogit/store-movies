@@ -1,6 +1,6 @@
 import { KeyForQuery } from '@/constants/KeyForQuery';
 import { StaleTimeQuery } from '@/constants/StaleTimeQuery';
-import { FetchAllProducts } from '@/functions/FetchAllProducts';
+import { FetchAllProducts } from '@/functions/fetchAllProducts';
 import { ISizeClasses } from '@/types/base';
 import { useQueryClient } from '@tanstack/react-query';
 

@@ -1,8 +1,8 @@
-import Footer from '@/components/others/Footer';
-import Header from '@/components/others/Header';
-import { ModeToggle } from '@/components/others/ModeToggle';
-import SafeAreaView from '@/components/others/SafeAreaView';
-import ScrollToTop from '@/components/others/ScrollToTop';
+import Footer from '@/components/custom/Footer';
+import Header from '@/components/custom/Header';
+import { ModeToggle } from '@/components/custom/ModeToggle';
+import SafeAreaView from '@/components/custom/SafeAreaView';
+import ScrollToTop from '@/components/custom/ScrollToTop';
 import { Toaster } from '@/components/ui/Sonner';
 import { ILayoutAppProps } from '@/types/layouts/LayoutApp';
 import { ScrollRestoration } from 'react-router-dom';

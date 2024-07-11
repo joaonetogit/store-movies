@@ -1,5 +1,7 @@
-export interface IChildrenProps {
-  children: React.ReactNode;
+import { ReactNode } from 'react';
+
+export interface IChildren {
+  children: ReactNode;
 }
 
 export interface IIdProps {

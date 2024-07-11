@@ -1,5 +1,5 @@
 import { IProduct, IProductOnCart } from '../product';
-import { CalculateTotalType } from '../utils/CalculateTotal';
+import { CalculateTotalType } from '../utils/calculateTotal';
 
 export interface ICartStore {
   cartItems: IProductOnCart[];

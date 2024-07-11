@@ -1,6 +1,6 @@
-import CartEmpty from '@/components/others/CartPage/CartEmpty';
-import CartHasItems from '@/components/others/CartPage/CartHasItems';
-import Container from '@/components/others/Container';
+import CartEmpty from '@/components/custom/CartPage/CartEmpty';
+import CartHasItems from '@/components/custom/CartPage/CartHasItems';
+import Container from '@/components/custom/Container';
 import LayoutApp from '@/layouts/LayoutApp';
 import useCartStore from '@/store/useCartStore';
 
